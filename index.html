@@ -3,853 +3,930 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dotcom — Digital Marketing Agency</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>DotCom — Digital Marketing | Customer Satisfaction</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --blue:#1654F0;--blue-dark:#0F3FBF;--blue-light:#EBF1FF;--blue-mid:#4D7EF7;
-  --coral:#FF5C35;--coral-light:#FFF0EC;
-  --green:#0EC97F;--green-light:#EAFFF6;
-  --yellow:#FFB800;--yellow-light:#FFF8E6;
-  --purple:#8B5CF6;--purple-light:#F5F0FF;
-  --dark:#0A0F1E;--dark-2:#1C2340;
-  --gray:#6B7A99;--gray-light:#F4F6FB;
-  --border:#E4E9F5;--white:#FFFFFF;
-  --sh-sm:0 2px 12px rgba(22,84,240,.08);
-  --sh-md:0 8px 32px rgba(22,84,240,.12);
-  --sh-lg:0 20px 60px rgba(22,84,240,.16);
+  --red:#CC1212;
+  --red2:#E01E1E;
+  --red-dark:#9A0A0A;
+  --black:#0D0D0D;
+  --black2:#161616;
+  --black3:#1E1E1E;
+  --gray:#2A2A2A;
+  --gray-mid:#555;
+  --gray-light:#F0F0F0;
+  --white:#FFFFFF;
+  --off-white:#FAF9F9;
+  --border-light:#E8E8E8;
+  --border-dark:rgba(255,255,255,.08);
 }
 html{scroll-behavior:smooth;}
-body{font-family:'Manrope',sans-serif;background:#fff;color:var(--dark);overflow-x:hidden;line-height:1.6;}
-::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:#f0f4ff;}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
+body{font-family:'Barlow',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:#111;}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:3px;}
+img{display:block;max-width:100%;}
 
-/* LOADER */
-#loader{position:fixed;inset:0;z-index:99999;background:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .7s,visibility .7s;}
-#loader.out{opacity:0;visibility:hidden;}
-.ld-brand{font-family:'Syne',sans-serif;font-size:2.8rem;font-weight:800;color:var(--dark);letter-spacing:-1.5px;}
-.ld-brand em{color:var(--blue);font-style:normal;}
-.ld-dots{display:flex;gap:8px;}
-.ld-dots span{width:10px;height:10px;border-radius:50%;background:var(--blue);animation:bdot .9s ease infinite;}
-.ld-dots span:nth-child(2){animation-delay:.15s;background:var(--coral);}
-.ld-dots span:nth-child(3){animation-delay:.3s;background:var(--green);}
-@keyframes bdot{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-14px);}}
+/* ─── LOADER ─── */
+#ldr{position:fixed;inset:0;z-index:99999;background:var(--black);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .7s,visibility .7s;}
+#ldr.out{opacity:0;visibility:hidden;}
+.ldr-logo{display:flex;align-items:center;gap:12px;}
+.ldr-dots{display:flex;gap:8px;}
+.ldr-dots span{width:10px;height:10px;border-radius:50%;animation:ldot .9s ease infinite;}
+.ldr-dots span:nth-child(1){background:var(--red);animation-delay:0s;}
+.ldr-dots span:nth-child(2){background:var(--white);animation-delay:.15s;}
+.ldr-dots span:nth-child(3){background:var(--red);animation-delay:.3s;}
+@keyframes ldot{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-14px);}}
+
+/* ─── SVG LOGO (recreated from brand assets) ─── */
+.logo-mark{
+  width:48px;height:48px;flex-shrink:0;
+}
+.logo-wordmark{display:flex;flex-direction:column;line-height:1;}
+.logo-wordmark .brand{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;letter-spacing:-0.5px;color:var(--black);}
+.logo-wordmark .tagline{font-size:.55rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray-mid);}
+.logo-white .brand{color:var(--white);}
+.logo-white .tagline{color:rgba(255,255,255,.5);}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:999;height:74px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
-nav.stuck{background:rgba(255,255,255,.96);backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--border),0 4px 24px rgba(22,84,240,.06);height:64px;}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Syne',sans-serif;font-size:1.65rem;font-weight:800;color:var(--dark);letter-spacing:-1px;}
-.logo-icon{width:36px;height:36px;border-radius:10px;background:var(--blue);display:grid;place-items:center;position:relative;overflow:hidden;}
-.logo-icon::before{content:'';position:absolute;inset:0;background:conic-gradient(from 220deg,var(--blue),var(--blue-mid),#2CBDFE,var(--green),var(--blue));animation:lspin 4s linear infinite;}
-.logo-icon::after{content:'●';position:relative;z-index:1;font-size:.85rem;color:#fff;}
-@keyframes lspin{from{transform:rotate(0);}to{transform:rotate(360deg);}}
-.logo em{color:var(--blue);font-style:normal;}
-.nav-c{display:flex;align-items:center;gap:.25rem;}
-.nav-c a{padding:.45rem .9rem;border-radius:8px;color:var(--gray);font-size:.875rem;font-weight:600;text-decoration:none;transition:.2s;}
-.nav-c a:hover{color:var(--dark);background:var(--blue-light);}
-.nav-r{display:flex;align-items:center;gap:.75rem;}
-.btn-gh{padding:.5rem 1.25rem;border-radius:8px;border:1.5px solid var(--border);color:var(--dark);font-size:.875rem;font-weight:600;text-decoration:none;transition:.2s;}
-.btn-gh:hover{border-color:var(--blue);color:var(--blue);}
-.btn-nc{padding:.55rem 1.4rem;border-radius:50px;background:var(--blue);color:#fff;font-size:.875rem;font-weight:700;text-decoration:none;transition:.25s;box-shadow:0 4px 16px rgba(22,84,240,.3);}
-.btn-nc:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(22,84,240,.4);}
-.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none;}
-.ham span{width:22px;height:2px;background:var(--dark);border-radius:2px;transition:.3s;}
-.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
-.ham.open span:nth-child(2){opacity:0;}
-.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-.mob-nav{display:none;position:fixed;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:1.5rem 5%;flex-direction:column;gap:.5rem;box-shadow:0 8px 32px rgba(0,0,0,.08);z-index:998;animation:sld .3s ease;}
-.mob-nav.open{display:flex;}
-@keyframes sld{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
-.mob-nav a{padding:.75rem 1rem;border-radius:10px;color:var(--dark);font-weight:600;text-decoration:none;font-size:1rem;transition:.2s;}
-.mob-nav a:hover{background:var(--blue-light);color:var(--blue);}
-.mob-nav .mc{margin-top:.5rem;background:var(--blue);color:#fff !important;text-align:center;border-radius:12px;}
-.mob-nav .mc:hover{background:var(--blue-dark);}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:76px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.stuck{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);box-shadow:0 2px 0 var(--border-light),0 4px 24px rgba(0,0,0,.06);height:66px;}
+nav.stuck .logo-wordmark .brand{color:var(--black);}
+nav.stuck .logo-wordmark .tagline{color:var(--gray-mid);}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-logo-hero{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:.25rem;}
+.nav-links a{padding:.45rem 1rem;border-radius:6px;color:var(--gray);font-size:.875rem;font-weight:600;text-decoration:none;transition:.2s;letter-spacing:.2px;}
+.nav-links a:hover{color:var(--black);background:var(--gray-light);}
+.nav-actions{display:flex;align-items:center;gap:.75rem;}
+.btn-ghost-nav{padding:.5rem 1.2rem;border-radius:6px;border:1.5px solid var(--border-light);color:var(--black);font-size:.875rem;font-weight:600;text-decoration:none;transition:.2s;}
+.btn-ghost-nav:hover{border-color:var(--red);color:var(--red);}
+.btn-cta-nav{padding:.55rem 1.5rem;border-radius:6px;background:var(--red);color:#fff;font-size:.875rem;font-weight:700;text-decoration:none;transition:.25s;letter-spacing:.3px;}
+.btn-cta-nav:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(204,18,18,.35);}
+.ham-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none;}
+.ham-btn span{width:22px;height:2px;background:var(--black);border-radius:2px;transition:.3s;}
+nav.stuck .ham-btn span{background:var(--black);}
+.ham-btn.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.ham-btn.open span:nth-child(2){opacity:0;}
+.ham-btn.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mob-drawer{display:none;position:fixed;top:66px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border-light);padding:1.5rem 5%;flex-direction:column;gap:.5rem;box-shadow:0 8px 32px rgba(0,0,0,.1);z-index:998;animation:drawerIn .3s ease;}
+.mob-drawer.open{display:flex;}
+@keyframes drawerIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.mob-drawer a{padding:.75rem 1rem;border-radius:8px;color:var(--black);font-weight:600;text-decoration:none;font-size:1rem;transition:.2s;}
+.mob-drawer a:hover{background:var(--gray-light);color:var(--red);}
+.mob-drawer .mob-cta{margin-top:.5rem;background:var(--red);color:#fff !important;text-align:center;border-radius:8px;}
+.mob-drawer .mob-cta:hover{background:var(--red-dark);}
 
-/* HERO */
-.hero{min-height:100vh;padding:120px 5% 80px;display:flex;align-items:center;position:relative;overflow:hidden;background:#fff;}
-.hblob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:bfloat ease-in-out infinite;}
-.hb1{width:600px;height:600px;background:rgba(22,84,240,.08);top:-150px;right:-100px;animation-duration:8s;}
-.hb2{width:400px;height:400px;background:rgba(14,201,127,.07);bottom:-50px;left:-80px;animation-duration:11s;animation-delay:2s;}
-.hb3{width:300px;height:300px;background:rgba(255,92,53,.06);top:40%;right:30%;animation-duration:9s;animation-delay:1s;}
-@keyframes bfloat{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(15px,-20px) scale(1.05);}66%{transform:translate(-10px,15px) scale(.97);}}
-.hero-in{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%;max-width:1400px;margin:0 auto;position:relative;z-index:2;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-light);border:1px solid rgba(22,84,240,.2);padding:.4rem 1rem;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--blue);margin-bottom:1.5rem;}
-.ldot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pg 1.5s infinite;}
-@keyframes pg{0%,100%{transform:scale(1);}50%{transform:scale(1.4);}}
-.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.6rem,4.5vw,4.2rem);font-weight:800;line-height:1.08;letter-spacing:-2px;color:var(--dark);margin-bottom:1.25rem;}
-.hl-blue{position:relative;display:inline-block;color:var(--blue);}
-.hl-blue::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--blue),var(--blue-mid));border-radius:3px;opacity:.3;}
-.hl-coral{color:var(--coral);}
-.hero-desc{font-size:1.05rem;color:var(--gray);line-height:1.8;max-width:500px;margin-bottom:2.25rem;}
-.hero-acts{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
-.btn-p{display:inline-flex;align-items:center;gap:8px;padding:.85rem 2rem;border-radius:50px;background:var(--blue);color:#fff;font-weight:700;font-size:.95rem;text-decoration:none;transition:.3s;box-shadow:0 8px 28px rgba(22,84,240,.35);}
-.btn-p:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 14px 40px rgba(22,84,240,.45);}
-.btn-p svg{transition:.3s;}.btn-p:hover svg{transform:translateX(4px);}
-.btn-s{display:inline-flex;align-items:center;gap:8px;padding:.85rem 2rem;border-radius:50px;border:2px solid var(--border);color:var(--dark);font-weight:700;font-size:.95rem;text-decoration:none;transition:.3s;}
-.btn-s:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
-.hero-proof{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
-.pavs{display:flex;}
-.pav{width:36px;height:36px;border-radius:50%;border:2px solid #fff;margin-left:-10px;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff;}
-.pav:first-child{margin-left:0;}
-.pa{background:linear-gradient(135deg,#1654F0,#4D7EF7);}.pb{background:linear-gradient(135deg,#0EC97F,#06A360);}.pc{background:linear-gradient(135deg,#FF5C35,#FF9472);}.pd{background:linear-gradient(135deg,#FFB800,#FFDA6E);}
-.pt{font-size:.82rem;color:var(--gray);}
-.pt strong{color:var(--dark);font-weight:700;}
-.pdiv{width:1px;height:36px;background:var(--border);}
-.pst .num{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--dark);letter-spacing:-1px;}
-.pst .lbl{font-size:.75rem;color:var(--gray);}
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;background:var(--black);
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding:100px 5% 80px;
+}
+/* diagonal red slashes — matching brand style */
+.hero::before{
+  content:'';position:absolute;
+  top:-20%;right:-5%;width:55%;height:140%;
+  background:linear-gradient(165deg,var(--red) 0%,var(--red-dark) 100%);
+  clip-path:polygon(25% 0%,100% 0%,100% 100%,0% 100%);
+  opacity:.12;
+}
+.hero::after{
+  content:'';position:absolute;
+  top:0;right:0;width:4px;height:100%;
+  background:var(--red);
+}
+.hero-sweep{
+  position:absolute;top:0;right:0;bottom:0;width:46%;
+  background:linear-gradient(160deg,rgba(204,18,18,.06) 0%,rgba(204,18,18,.03) 100%);
+  border-left:1px solid rgba(204,18,18,.15);
+  clip-path:polygon(12% 0%,100% 0%,100% 100%,0% 100%);
+}
+.hero-dots{
+  position:absolute;right:8%;top:15%;
+  display:grid;grid-template-columns:repeat(8,1fr);gap:14px;opacity:.15;
+}
+.hero-dots span{width:3px;height:3px;border-radius:50%;background:#fff;display:block;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1300px;margin:0 auto;width:100%;position:relative;z-index:2;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:1.25rem;}
+.eyebrow-line{width:32px;height:3px;background:var(--red);border-radius:2px;}
+.eyebrow-text{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);}
+.hero h1{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(3.5rem,6vw,5.8rem);
+  font-weight:900;font-style:italic;
+  line-height:.95;letter-spacing:-1px;
+  color:var(--white);margin-bottom:1rem;
+  text-transform:uppercase;
+}
+.hero h1 .red{color:var(--red);}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.6);line-height:1.75;max-width:480px;margin-bottom:2.25rem;font-weight:400;}
+.hero-sub strong{color:#fff;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-red{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 2rem;border-radius:6px;background:var(--red);color:#fff;font-weight:700;font-size:.95rem;text-decoration:none;transition:.3s;letter-spacing:.3px;}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 10px 30px rgba(204,18,18,.4);}
+.btn-red svg,.btn-outline-white svg{transition:.3s;}
+.btn-red:hover svg{transform:translateX(4px);}
+.btn-outline-white{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 2rem;border-radius:6px;border:2px solid rgba(255,255,255,.2);color:#fff;font-weight:700;font-size:.95rem;text-decoration:none;transition:.3s;}
+.btn-outline-white:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px);}
+.hero-trust{display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+.ht-item{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:rgba(255,255,255,.5);font-weight:500;}
+.ht-item .dot{width:6px;height:6px;border-radius:50%;background:var(--red);}
 
-/* HERO VISUAL */
-.hero-r{position:relative;}
-.hero-dash{background:#fff;border-radius:24px;padding:2rem;box-shadow:0 24px 80px rgba(22,84,240,.14),0 0 0 1px var(--border);position:relative;z-index:2;animation:hfloat 6s ease-in-out infinite;}
-@keyframes hfloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
-.dh{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;}
-.dt{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--dark);}
-.db{padding:.3rem .75rem;background:var(--green-light);color:#06A360;font-size:.72rem;font-weight:700;border-radius:50px;}
-.dchart{height:120px;display:flex;align-items:flex-end;gap:8px;margin-bottom:1.5rem;}
-.bar{flex:1;border-radius:6px 6px 0 0;background:var(--blue-light);position:relative;overflow:hidden;}
-.bar::after{content:'';position:absolute;bottom:0;left:0;right:0;background:var(--blue);border-radius:6px 6px 0 0;animation:bgrow .8s ease forwards;}
-.bar:nth-child(1)::after{height:40%;animation-delay:.1s;}
-.bar:nth-child(2)::after{height:65%;animation-delay:.15s;}
-.bar:nth-child(3)::after{height:45%;animation-delay:.2s;}
-.bar:nth-child(4)::after{height:80%;animation-delay:.25s;}
-.bar:nth-child(5)::after{height:55%;animation-delay:.3s;}
-.bar:nth-child(6)::after{height:90%;background:var(--coral);animation-delay:.35s;}
-.bar:nth-child(7)::after{height:70%;animation-delay:.4s;}
-@keyframes bgrow{from{height:0;}to{}}
-.dstats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;}
-.ds{text-align:center;padding:.75rem;border-radius:12px;background:var(--gray-light);}
-.dsv{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--dark);}
-.dsl{font-size:.68rem;color:var(--gray);font-weight:600;}
-.fcrd{position:absolute;background:#fff;border-radius:16px;padding:1rem 1.25rem;box-shadow:0 8px 32px rgba(0,0,0,.1),0 0 0 1px var(--border);z-index:3;}
-.fc-t{top:-20px;right:-20px;animation:ff1 5s ease-in-out infinite;}
-.fc-b{bottom:-20px;left:-20px;animation:ff2 7s ease-in-out infinite;}
-@keyframes ff1{0%,100%{transform:translateY(0) rotate(2deg);}50%{transform:translateY(-10px) rotate(-1deg);}}
-@keyframes ff2{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(8px) rotate(1deg);}}
-.fcrd .fi{font-size:1.5rem;margin-bottom:.25rem;}
-.fcrd .fv{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;color:var(--dark);}
-.fcrd .fl{font-size:.72rem;color:var(--gray);font-weight:500;}
-.fcrd .fv.fg{color:var(--green);}
+/* HERO RIGHT */
+.hero-right{position:relative;}
+.hero-dashboard{
+  background:var(--black2);border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;padding:2rem;
+  box-shadow:0 0 0 1px rgba(204,18,18,.15),0 30px 80px rgba(0,0,0,.5);
+  position:relative;z-index:2;
+  animation:hfl 6s ease-in-out infinite;
+}
+@keyframes hfl{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.07);}
+.dash-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;text-transform:uppercase;letter-spacing:.5px;}
+.dash-live{display:flex;align-items:center;gap:5px;font-size:.7rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.5px;}
+.dash-live .blink{width:6px;height:6px;border-radius:50%;background:var(--red);animation:bk 1.4s ease infinite;}
+@keyframes bk{0%,100%{opacity:1;}50%{opacity:.2;}}
+.dash-chart{height:110px;display:flex;align-items:flex-end;gap:6px;margin-bottom:1.25rem;}
+.bar{flex:1;border-radius:4px 4px 0 0;background:rgba(255,255,255,.05);position:relative;overflow:hidden;}
+.bar::after{content:'';position:absolute;bottom:0;left:0;right:0;background:rgba(204,18,18,.8);border-radius:4px 4px 0 0;animation:bg .8s ease forwards;}
+.bar:nth-child(1)::after{height:35%;animation-delay:.05s;}
+.bar:nth-child(2)::after{height:60%;animation-delay:.1s;}
+.bar:nth-child(3)::after{height:42%;animation-delay:.15s;}
+.bar:nth-child(4)::after{height:78%;animation-delay:.2s;}
+.bar:nth-child(5)::after{height:52%;animation-delay:.25s;}
+.bar:nth-child(6)::after{height:88%;background:var(--red);animation-delay:.3s;}
+.bar:nth-child(7)::after{height:65%;animation-delay:.35s;}
+@keyframes bg{from{height:0;}to{}}
+.dash-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;}
+.dm{background:rgba(255,255,255,.04);border-radius:10px;padding:.8rem;text-align:center;border:1px solid rgba(255,255,255,.06);}
+.dm .v{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-.5px;}
+.dm .l{font-size:.65rem;color:rgba(255,255,255,.4);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.dm:nth-child(2) .v{color:var(--red);}
+.fcard{position:absolute;background:var(--black2);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.9rem 1.2rem;z-index:3;box-shadow:0 12px 40px rgba(0,0,0,.4);}
+.fcard-tl{top:-18px;right:-18px;animation:fc1 5s ease-in-out infinite;}
+.fcard-br{bottom:-18px;left:-18px;animation:fc2 7s ease-in-out infinite;}
+@keyframes fc1{0%,100%{transform:translateY(0) rotate(2deg);}50%{transform:translateY(-10px) rotate(-1deg);}}
+@keyframes fc2{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(8px) rotate(1deg);}}
+.fcard .fi{font-size:1.3rem;margin-bottom:.2rem;}
+.fcard .fv{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:-.5px;}
+.fcard .fv.red{color:var(--red);}
+.fcard .fl{font-size:.68rem;color:rgba(255,255,255,.45);font-weight:600;}
 
-/* MARQUEE */
-.mq-sec{padding:18px 0;background:var(--blue);overflow:hidden;}
-.mq-track{display:flex;gap:0;animation:mqrun 25s linear infinite;white-space:nowrap;}
-.mq-item{display:inline-flex;align-items:center;gap:.75rem;padding:0 2rem;color:rgba(255,255,255,.75);font-size:.85rem;font-weight:600;flex-shrink:0;}
-.mq-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.4);}
-@keyframes mqrun{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+/* ─── MARQUEE ─── */
+.mq{padding:16px 0;background:var(--red);overflow:hidden;}
+.mq-track{display:flex;gap:0;animation:mqr 22s linear infinite;white-space:nowrap;}
+.mq-item{display:inline-flex;align-items:center;gap:.75rem;padding:0 1.75rem;color:rgba(255,255,255,.85);font-size:.83rem;font-weight:700;letter-spacing:.3px;flex-shrink:0;text-transform:uppercase;}
+.mq-sep{color:rgba(255,255,255,.4);font-size:.6rem;}
+@keyframes mqr{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* SECTIONS */
+/* ─── SHARED ─── */
 section{padding:100px 5%;}
-.con{max-width:1300px;margin:0 auto;}
-.tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1rem;}
-.tag .pip{width:20px;height:3px;border-radius:2px;}
-.tb{color:var(--blue);}.tb .pip{background:var(--blue);}
-.tc{color:var(--coral);}.tc .pip{background:var(--coral);}
-.tg{color:var(--green);}.tg .pip{background:var(--green);}
-.tp{color:var(--purple);}.tp .pip{background:var(--purple);}
-h2.st{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,2.9rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1;color:var(--dark);margin-bottom:1rem;}
-.ss{font-size:1.05rem;color:var(--gray);line-height:1.75;max-width:560px;}
-.tc-{text-align:center;}.tc- .ss{margin:0 auto;}
-.rr{opacity:0;transform:translateY(36px);transition:opacity .65s ease,transform .65s ease;}
+.con{max-width:1280px;margin:0 auto;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:1rem;}
+.eyebrow .ep{width:20px;height:3px;border-radius:2px;background:var(--red);}
+.eyebrow span{font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);}
+h2.stitle{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;letter-spacing:-.5px;text-transform:uppercase;line-height:1.0;color:var(--black);margin-bottom:1rem;}
+h2.stitle .r{color:var(--red);}
+h2.stitle-wh{color:var(--white);}
+h2.stitle-wh .r{color:var(--red);}
+.ssub{font-size:1.02rem;color:var(--gray-mid);line-height:1.75;max-width:540px;}
+.tc{text-align:center;}.tc .ssub{margin:0 auto;}
+.rr{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease;}
 .rr.in{opacity:1;transform:none;}
-.rr.d1{transition-delay:.1s;}.rr.d2{transition-delay:.2s;}.rr.d3{transition-delay:.3s;}.rr.d4{transition-delay:.4s;}
+.d1{transition-delay:.08s;}.d2{transition-delay:.16s;}.d3{transition-delay:.24s;}.d4{transition-delay:.32s;}
 
-/* STATS */
-.stats-s{background:var(--gray-light);padding:60px 5%;}
-.stats-g{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1100px;margin:0 auto;}
-.sb{text-align:center;}
-.sb .num{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;letter-spacing:-2px;line-height:1;color:var(--dark);margin-bottom:.3rem;}
-.sb .num span{color:var(--blue);}
-.sb .lbl{font-size:.875rem;color:var(--gray);font-weight:600;}
-.sb .lbl em{color:var(--green);font-style:normal;font-weight:700;}
+/* ─── STATS ─── */
+.stats-sec{background:var(--black);padding:70px 5%;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1100px;margin:0 auto;}
+.stat{text-align:center;padding:2rem 1rem;position:relative;}
+.stat+.stat::before{content:'';position:absolute;left:0;top:25%;bottom:25%;width:1px;background:rgba(255,255,255,.08);}
+.stat .num{font-family:'Barlow Condensed',sans-serif;font-size:3.5rem;font-weight:900;letter-spacing:-2px;color:var(--white);line-height:1;margin-bottom:.3rem;}
+.stat .num em{color:var(--red);font-style:normal;}
+.stat .lbl{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;}
 
-/* SERVICES */
-.svs{background:#fff;}
-.stabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:2.5rem;margin-bottom:3rem;border-bottom:2px solid var(--border);}
-.stab{padding:.6rem 1.25rem;border-radius:8px 8px 0 0;font-size:.875rem;font-weight:700;cursor:pointer;color:var(--gray);border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-2px;transition:.2s;}
-.stab:hover{color:var(--dark);background:var(--gray-light);}
-.stab.on{color:var(--blue);border-bottom-color:var(--blue);background:var(--blue-light);}
-.panels .pan{display:none;}
-.panels .pan.on{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;}
-.pi h3{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-.5px;color:var(--dark);margin-bottom:.75rem;}
-.pi p{color:var(--gray);line-height:1.8;margin-bottom:1.5rem;}
-.pfts{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem;}
-.pfts li{display:flex;align-items:center;gap:.75rem;font-size:.9rem;font-weight:500;color:var(--dark);}
-.chk{width:22px;height:22px;border-radius:6px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue);font-size:.7rem;font-weight:800;}
-.pv{border-radius:20px;padding:2rem;position:relative;overflow:hidden;min-height:300px;display:flex;align-items:center;justify-content:center;}
-.pvb{background:var(--blue-light);}.pvc{background:var(--coral-light);}.pvg{background:var(--green-light);}.pvy{background:var(--yellow-light);}.pvp{background:var(--purple-light);}
-.pem{font-size:7rem;opacity:.7;animation:hfloat 5s ease-in-out infinite;}
-.pmets{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;display:flex;gap:.75rem;}
-.pm{flex:1;background:#fff;border-radius:12px;padding:.75rem;box-shadow:var(--sh-sm);}
-.pm .v{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--dark);}
-.pm .l{font-size:.68rem;color:var(--gray);font-weight:600;}
+/* ─── SERVICES ─── */
+.svcs-sec{background:var(--off-white);}
+.svcs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
+.svc-card{background:var(--white);border:1px solid var(--border-light);border-radius:12px;padding:2rem;transition:.3s;position:relative;overflow:hidden;cursor:pointer;}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);transform:scaleX(0);transition:.3s;transform-origin:left;}
+.svc-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.1);transform:translateY(-4px);}
+.svc-card:hover::before{transform:scaleX(1);}
+.svc-icon{width:56px;height:56px;border-radius:12px;background:rgba(204,18,18,.08);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem;transition:.3s;}
+.svc-card:hover .svc-icon{background:var(--red);filter:saturate(0) brightness(10);}
+.svc-card h3{font-family:'Barlow Condensed',sans-serif;font-size:1.25rem;font-weight:800;color:var(--black);text-transform:uppercase;letter-spacing:.3px;margin-bottom:.6rem;}
+.svc-card p{color:var(--gray-mid);font-size:.88rem;line-height:1.7;margin-bottom:1.25rem;}
+.svc-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+.stg{padding:.22rem .65rem;border-radius:4px;font-size:.7rem;font-weight:700;background:rgba(204,18,18,.06);color:var(--red);letter-spacing:.3px;}
+.svc-arrow{display:flex;align-items:center;gap:5px;color:var(--red);font-size:.82rem;font-weight:700;margin-top:1.25rem;transition:.3s;}
+.svc-card:hover .svc-arrow{gap:10px;}
 
-/* PORTFOLIO */
-.port-s{background:var(--gray-light);}
-.pf-filt{display:flex;gap:.5rem;flex-wrap:wrap;margin:2.5rem 0;}
-.pfb{padding:.45rem 1.1rem;border-radius:50px;font-size:.8rem;font-weight:700;border:1.5px solid var(--border);background:#fff;color:var(--gray);cursor:pointer;transition:.2s;}
-.pfb.on,.pfb:hover{background:var(--blue);border-color:var(--blue);color:#fff;}
-.port-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.port-g .wide{grid-column:span 2;}
-.wc{border-radius:20px;overflow:hidden;background:#fff;box-shadow:var(--sh-sm);transition:.4s;cursor:pointer;}
-.wc:hover{transform:translateY(-6px);box-shadow:var(--sh-lg);}
-.wi{height:220px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
-.wide .wi{height:260px;}
-.wii{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;opacity:.6;}
-.wbl{background:linear-gradient(135deg,#EBF1FF,#C5D8FF);}
-.wcl{background:linear-gradient(135deg,#FFF0EC,#FFCFC4);}
-.wgl{background:linear-gradient(135deg,#EAFFF6,#B3F0D8);}
-.wyl{background:linear-gradient(135deg,#FFF8E6,#FFE6A0);}
-.wpl{background:linear-gradient(135deg,#F5F0FF,#DDD0FF);}
-.wpk{background:linear-gradient(135deg,#FFF0F8,#FFCFE8);}
-.wov{position:absolute;inset:0;background:rgba(22,84,240,.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:.3s;color:#fff;font-weight:700;font-size:.9rem;letter-spacing:.5px;}
-.wc:hover .wov{opacity:1;}
-.wtag{position:absolute;top:1rem;left:1rem;padding:.3rem .75rem;border-radius:50px;font-size:.7rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;}
-.wt-b{background:var(--blue);color:#fff;}.wt-c{background:var(--coral);color:#fff;}.wt-g{background:var(--green);color:#fff;}.wt-y{background:var(--yellow);color:#fff;}.wt-p{background:var(--purple);color:#fff;}
-.wb{padding:1.25rem 1.5rem;}
-.wcl2{font-size:.72rem;color:var(--gray);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.3rem;}
-.wtit{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:.75rem;letter-spacing:-.3px;}
-.wres{display:flex;gap:1.25rem;}
+/* ─── PORTFOLIO ─── */
+.port-sec{background:var(--black2);}
+.port-sec .stitle{color:var(--white);}
+.port-filter{display:flex;gap:.6rem;flex-wrap:wrap;margin:2.5rem 0;}
+.pfbtn{padding:.45rem 1.1rem;border-radius:5px;font-size:.78rem;font-weight:700;border:1.5px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.5);cursor:pointer;transition:.2s;text-transform:uppercase;letter-spacing:.5px;}
+.pfbtn.on,.pfbtn:hover{background:var(--red);border-color:var(--red);color:#fff;}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.port-grid .wide{grid-column:span 2;}
+.wcard{border-radius:12px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);transition:.4s;cursor:pointer;}
+.wcard:hover{transform:translateY(-5px);border-color:rgba(204,18,18,.4);box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.wimg{height:200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.wide .wimg{height:240px;}
+.wimg-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:5rem;opacity:.5;}
+.wb1{background:linear-gradient(135deg,#1a0000,#3d0000);}
+.wb2{background:linear-gradient(135deg,#001a0e,#003d1f);}
+.wb3{background:linear-gradient(135deg,#0a0a1a,#1a1a3d);}
+.wb4{background:linear-gradient(135deg,#1a1000,#3d2800);}
+.wb5{background:linear-gradient(135deg,#1a001a,#3d003d);}
+.wb6{background:linear-gradient(135deg,#001a1a,#003d3d);}
+.wov{position:absolute;inset:0;background:rgba(204,18,18,.9);display:flex;align-items:center;justify-content:center;opacity:0;transition:.3s;color:#fff;font-weight:700;font-size:.9rem;letter-spacing:.5px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-size:1.1rem;}
+.wcard:hover .wov{opacity:1;}
+.wtag{position:absolute;top:1rem;left:1rem;padding:.28rem .7rem;border-radius:4px;font-size:.65rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;background:var(--red);color:#fff;}
+.wbody{padding:1.25rem 1.5rem;}
+.wcat{font-size:.68rem;color:rgba(255,255,255,.3);font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-bottom:.3rem;}
+.wtitle{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:.75rem;letter-spacing:.2px;text-transform:uppercase;}
+.wresults{display:flex;gap:1.5rem;}
 .wr{text-align:center;}
-.wr .v{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue);}
-.wr .l{font-size:.68rem;color:var(--gray);font-weight:600;}
-.wr.grn .v{color:var(--green);}.wr.orl .v{color:var(--coral);}
+.wr .v{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:800;color:var(--red);letter-spacing:-.3px;}
+.wr .l{font-size:.65rem;color:rgba(255,255,255,.35);font-weight:600;text-transform:uppercase;letter-spacing:.3px;}
+.wr.wh .v{color:#fff;}
 
-/* PROCESS */
-.proc-s{background:#fff;}
-.proc-g{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem;position:relative;}
-.proc-g::before{content:'';position:absolute;top:44px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--blue),var(--coral),var(--green));opacity:.2;}
-.pstep{text-align:center;position:relative;}
-.psn{width:88px;height:88px;border-radius:50%;margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;font-size:1.8rem;position:relative;box-shadow:0 4px 20px rgba(0,0,0,.08);background:#fff;border:2px solid var(--border);transition:.4s;}
-.pstep:hover .psn{border-color:transparent;transform:scale(1.1);}
-.pstep:nth-child(1):hover .psn{background:var(--blue-light);border-color:var(--blue);}
-.pstep:nth-child(2):hover .psn{background:var(--coral-light);border-color:var(--coral);}
-.pstep:nth-child(3):hover .psn{background:var(--green-light);border-color:var(--green);}
-.pstep:nth-child(4):hover .psn{background:var(--yellow-light);border-color:var(--yellow);}
-.pstep h3{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--dark);margin-bottom:.5rem;}
-.pstep p{color:var(--gray);font-size:.85rem;line-height:1.65;}
+/* ─── SERVICES TAB PANEL ─── */
+.svc-tabs-sec{background:var(--white);}
+.stabs{display:flex;gap:.4rem;flex-wrap:wrap;border-bottom:2px solid var(--border-light);margin-top:2.5rem;margin-bottom:3rem;}
+.stab{padding:.65rem 1.2rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;color:var(--gray-mid);border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-2px;transition:.2s;border-radius:4px 4px 0 0;}
+.stab:hover{color:var(--black);background:var(--gray-light);}
+.stab.on{color:var(--red);border-bottom-color:var(--red);background:rgba(204,18,18,.04);}
+.panels .pan{display:none;}
+.panels .pan.on{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.paninfo h3{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:var(--black);margin-bottom:.75rem;}
+.paninfo p{color:var(--gray-mid);line-height:1.8;margin-bottom:1.5rem;}
+.panfeats{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:2rem;}
+.panfeats li{display:flex;align-items:center;gap:.75rem;font-size:.9rem;font-weight:500;color:var(--black);}
+.ck{width:22px;height:22px;border-radius:4px;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;font-size:.7rem;font-weight:900;}
+.panvis{border-radius:12px;overflow:hidden;min-height:300px;display:flex;align-items:center;justify-content:center;position:relative;}
+.pv1{background:linear-gradient(135deg,#fff5f5,#ffe5e5);}
+.pv2{background:linear-gradient(135deg,#fff9f0,#ffe8d0);}
+.pv3{background:linear-gradient(135deg,#f0fff8,#d0ffe8);}
+.pv4{background:linear-gradient(135deg,#f5f0ff,#e5d5ff);}
+.pv5{background:linear-gradient(135deg,#f0f8ff,#d5e8ff);}
+.pem{font-size:7rem;opacity:.65;animation:hfl 5s ease-in-out infinite;}
+.pmets{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;display:flex;gap:.6rem;}
+.pm{flex:1;background:#fff;border-radius:8px;padding:.75rem;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.pm .v{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:var(--black);}
+.pm .l{font-size:.65rem;color:var(--gray-mid);font-weight:600;text-transform:uppercase;letter-spacing:.3px;}
 
-/* WHY US */
-.why-s{background:var(--dark);}
-.why-in{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1300px;margin:0 auto;}
-.why-l .st{color:#fff;}
-.why-l .ss{color:rgba(255,255,255,.55);}
-.why-cs{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
-.wyc{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem 1.5rem;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:.3s;}
-.wyc:hover{background:rgba(22,84,240,.12);border-color:rgba(22,84,240,.3);}
-.wyi{width:48px;height:48px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
-.wyib{background:rgba(22,84,240,.15);}.wyic{background:rgba(255,92,53,.15);}.wyig{background:rgba(14,201,127,.15);}.wyiy{background:rgba(255,184,0,.15);}
-.wyc h4{font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;color:#fff;margin-bottom:.3rem;}
-.wyc p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.65;}
-.why-r{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:28px;padding:2.5rem;}
+/* ─── PROCESS ─── */
+.proc-sec{background:var(--gray-light);}
+.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:4rem;position:relative;}
+.proc-steps::before{content:'';position:absolute;top:40px;left:14%;right:14%;height:2px;background:linear-gradient(90deg,var(--red),rgba(204,18,18,.2));opacity:.4;}
+.pstep{text-align:center;}
+.pnum{width:80px;height:80px;border-radius:50%;margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;font-size:1.6rem;background:#fff;border:2px solid var(--border-light);box-shadow:0 4px 16px rgba(0,0,0,.06);transition:.4s;}
+.pstep:hover .pnum{background:var(--red);border-color:var(--red);transform:scale(1.1);}
+.pstep h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;text-transform:uppercase;letter-spacing:.3px;color:var(--black);margin-bottom:.5rem;}
+.pstep p{color:var(--gray-mid);font-size:.85rem;line-height:1.65;}
+
+/* ─── WHY US ─── */
+.why-sec{background:var(--black);}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1280px;margin:0 auto;}
+.why-l .ssub{color:rgba(255,255,255,.5);}
+.why-cards{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;}
+.wcard2{display:flex;gap:1rem;align-items:flex-start;padding:1.25rem;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);transition:.3s;}
+.wcard2:hover{background:rgba(204,18,18,.08);border-color:rgba(204,18,18,.25);}
+.wico{width:46px;height:46px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:rgba(204,18,18,.12);}
+.wcard2 h4{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;text-transform:uppercase;letter-spacing:.3px;margin-bottom:.3rem;}
+.wcard2 p{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.65;}
+.why-r{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:2.5rem;}
 .scrs{display:flex;flex-direction:column;gap:1.25rem;}
 .srow{display:flex;flex-direction:column;gap:.5rem;}
-.slbl{display:flex;justify-content:space-between;font-size:.85rem;color:rgba(255,255,255,.7);font-weight:600;}
+.slbl{display:flex;justify-content:space-between;font-size:.82rem;color:rgba(255,255,255,.6);font-weight:600;text-transform:uppercase;letter-spacing:.3px;}
 .slbl span:last-child{color:#fff;font-weight:800;}
-.sbar{height:8px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;}
-.sfil{height:100%;border-radius:4px;width:0;transition:width 1.2s ease;}
-.sfb{background:linear-gradient(90deg,var(--blue),var(--blue-mid));}.sfc{background:linear-gradient(90deg,var(--coral),#FF9472);}.sfg{background:linear-gradient(90deg,var(--green),#6AFFC7);}.sfy{background:linear-gradient(90deg,var(--yellow),#FFE066);}.sfp{background:linear-gradient(90deg,var(--purple),#C4B5FD);}
-.scap{font-size:.72rem;color:rgba(255,255,255,.35);}
+.sbar{height:7px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden;}
+.sfil{height:100%;border-radius:4px;width:0;transition:width 1.3s ease;background:var(--red);}
+.sfil2{background:rgba(255,255,255,.8);}
+.sfil3{background:linear-gradient(90deg,var(--red),var(--red2));}
+.scap{font-size:.7rem;color:rgba(255,255,255,.3);}
 .why-bot{display:flex;justify-content:space-between;padding-top:2rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,.08);}
-.wbs .v{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1;}
-.wbs .l{font-size:.72rem;color:rgba(255,255,255,.45);font-weight:600;margin-top:4px;}
+.wbs .v{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1;}
+.wbs .v em{color:var(--red);font-style:normal;}
+.wbs .l{font-size:.68rem;color:rgba(255,255,255,.35);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;}
 
-/* TESTIMONIALS */
-.tst-s{background:var(--gray-light);}
-.tst-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
-.tcd{background:#fff;border-radius:20px;padding:2rem;box-shadow:var(--sh-sm);border:1px solid var(--border);transition:.3s;}
-.tcd:hover{box-shadow:var(--sh-md);transform:translateY(-4px);}
-.tcd.ft{background:var(--blue);border-color:var(--blue);}
-.tstars{color:var(--yellow);font-size:.85rem;letter-spacing:2px;margin-bottom:1rem;}
-.ft .tstars{color:#FFE08A;}
-.tq{font-size:.92rem;color:var(--dark);line-height:1.75;margin-bottom:1.5rem;font-style:italic;}
-.ft .tq,.ft .tan{color:#fff;}
-.ft .tar,.ft .tco{color:rgba(255,255,255,.7);}
+/* ─── TESTIMONIALS ─── */
+.tst-sec{background:var(--off-white);}
+.tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
+.tcd{background:#fff;border-radius:12px;padding:2rem;box-shadow:0 2px 16px rgba(0,0,0,.06);border:1px solid var(--border-light);transition:.3s;position:relative;overflow:hidden;}
+.tcd::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);}
+.tcd:hover{box-shadow:0 12px 40px rgba(0,0,0,.1);transform:translateY(-3px);}
+.tcd.ft{background:var(--red);border-color:var(--red);}
+.tcd.ft::before{background:rgba(255,255,255,.3);}
+.tstars{color:var(--red);font-size:.88rem;letter-spacing:2px;margin-bottom:1rem;}
+.tcd.ft .tstars{color:#FFD0D0;}
+.tq{font-size:.9rem;color:var(--black);line-height:1.75;margin-bottom:1.5rem;font-style:italic;}
+.tcd.ft .tq{color:rgba(255,255,255,.9);}
 .tau{display:flex;align-items:center;gap:.75rem;}
-.tav{width:46px;height:46px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;color:#fff;}
-.tan{font-weight:700;font-size:.9rem;color:var(--dark);}
-.tar{font-size:.75rem;color:var(--gray);}
-.tco{display:inline-block;margin-top:3px;font-size:.68rem;font-weight:700;color:var(--blue);background:var(--blue-light);padding:.2rem .6rem;border-radius:4px;}
-.ft .tco{color:#fff;background:rgba(255,255,255,.2);}
+.tav{width:44px;height:44px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;color:#fff;}
+.tan{font-weight:700;font-size:.9rem;color:var(--black);}
+.tcd.ft .tan{color:#fff;}
+.tar{font-size:.73rem;color:var(--gray-mid);}
+.tcd.ft .tar{color:rgba(255,255,255,.65);}
+.tco{display:inline-block;margin-top:3px;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--red);background:rgba(204,18,18,.08);padding:.2rem .6rem;border-radius:4px;}
+.tcd.ft .tco{color:#fff;background:rgba(255,255,255,.2);}
 
-/* PLATFORMS */
-.plat-s{background:#fff;padding:80px 5%;}
-.plat-g{display:flex;flex-wrap:wrap;gap:1rem;margin-top:3rem;justify-content:center;}
-.pchip{display:flex;align-items:center;gap:.6rem;padding:.65rem 1.4rem;border-radius:50px;background:var(--gray-light);border:1.5px solid var(--border);font-size:.88rem;font-weight:700;color:var(--dark);transition:.3s;}
-.pchip:hover{background:var(--blue-light);border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
-.pchip .pi{font-size:1.1rem;}
+/* ─── PLATFORMS ─── */
+.plat-sec{background:var(--white);padding:80px 5%;}
+.plat-grid{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:3rem;justify-content:center;}
+.pchip{display:flex;align-items:center;gap:.6rem;padding:.65rem 1.4rem;border-radius:6px;background:var(--gray-light);border:1.5px solid var(--border-light);font-size:.88rem;font-weight:700;color:var(--black);transition:.3s;}
+.pchip:hover{background:var(--red);border-color:var(--red);color:#fff;transform:translateY(-2px);}
 
-/* PRICING */
-.pri-s{background:var(--gray-light);}
-.pri-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
-.prc{background:#fff;border:2px solid var(--border);border-radius:24px;padding:2.5rem 2rem;transition:.3s;position:relative;overflow:hidden;}
-.prc:hover{box-shadow:var(--sh-md);transform:translateY(-4px);}
-.prc.fp{background:var(--blue);border-color:var(--blue);box-shadow:0 20px 60px rgba(22,84,240,.35);}
-.pop-b{position:absolute;top:0;right:0;background:var(--coral);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:0 24px 0 16px;}
-.ptier{font-size:.7rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.75rem;}
-.fp .ptier{color:rgba(255,255,255,.7);}
-.ptb{color:var(--blue);}.ptg{color:var(--green);}
-.pprice{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;letter-spacing:-1.5px;color:var(--dark);line-height:1;margin-bottom:.2rem;}
-.fp .pprice{color:#fff;}
-.pnote{font-size:.8rem;color:var(--gray);margin-bottom:1.25rem;}
-.fp .pnote{color:rgba(255,255,255,.65);}
-.pdesc{font-size:.875rem;color:var(--gray);line-height:1.6;padding-bottom:1.5rem;margin-bottom:1.5rem;border-bottom:1px solid var(--border);}
-.fp .pdesc{color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.15);}
-.pfeats{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem;}
-.pfeats li{display:flex;align-items:center;gap:.75rem;font-size:.875rem;color:var(--dark);}
-.fp .pfeats li{color:rgba(255,255,255,.9);}
-.pfeats li .ck{width:20px;height:20px;border-radius:6px;background:var(--blue-light);display:grid;place-items:center;flex-shrink:0;font-size:.65rem;color:var(--blue);font-weight:900;}
-.fp .pfeats li .ck{background:rgba(255,255,255,.2);color:#fff;}
-.pfeats li.off{color:var(--gray);}
-.pfeats li.off .ck{background:var(--gray-light);color:var(--gray);}
-.pbtn{width:100%;padding:.85rem;border-radius:12px;font-weight:700;font-size:.9rem;text-align:center;cursor:pointer;border:none;text-decoration:none;display:block;transition:.3s;}
-.pb-out{background:#fff;border:2px solid var(--border);color:var(--dark);}
-.pb-out:hover{border-color:var(--blue);color:var(--blue);}
-.pb-wh{background:#fff;color:var(--blue);}
-.pb-wh:hover{background:var(--blue-light);}
+/* ─── PRICING ─── */
+.pri-sec{background:var(--gray-light);}
+.pri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem;}
+.prc{background:#fff;border:2px solid var(--border-light);border-radius:12px;padding:2.5rem 2rem;transition:.3s;position:relative;overflow:hidden;}
+.prc:hover{box-shadow:0 12px 40px rgba(0,0,0,.1);transform:translateY(-3px);}
+.prc.fp{background:var(--black);border-color:var(--black);box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.prc.fp:hover{box-shadow:0 20px 60px rgba(0,0,0,.45);}
+.pop-tag{position:absolute;top:0;right:0;background:var(--red);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:.4rem 1rem;border-radius:0 12px 0 10px;}
+.ptier{font-size:.68rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.75rem;color:var(--red);}
+.fp .ptier{color:rgba(255,255,255,.5);}
+.ppr{font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900;letter-spacing:-1px;color:var(--black);line-height:1;margin-bottom:.2rem;}
+.fp .ppr{color:#fff;}
+.pnote{font-size:.78rem;color:var(--gray-mid);margin-bottom:1.25rem;}
+.fp .pnote{color:rgba(255,255,255,.45);}
+.pdsc{font-size:.875rem;color:var(--gray-mid);line-height:1.6;padding-bottom:1.5rem;margin-bottom:1.5rem;border-bottom:1px solid var(--border-light);}
+.fp .pdsc{color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.08);}
+.pfts2{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem;}
+.pfts2 li{display:flex;align-items:center;gap:.7rem;font-size:.875rem;color:var(--black);}
+.fp .pfts2 li{color:rgba(255,255,255,.8);}
+.pfts2 li .ck{background:var(--red);}
+.pfts2 li.off .ck{background:var(--gray-light);color:var(--gray-mid);}
+.pfts2 li.off{color:var(--gray-mid);}
+.fp .pfts2 li.off{color:rgba(255,255,255,.3);}
+.fp .pfts2 li.off .ck{background:rgba(255,255,255,.08);color:rgba(255,255,255,.3);}
+.pbtn{width:100%;padding:.85rem;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.5px;text-transform:uppercase;text-align:center;cursor:pointer;border:2px solid var(--border-light);color:var(--black);background:#fff;text-decoration:none;display:block;transition:.3s;}
+.pbtn:hover{border-color:var(--red);color:var(--red);}
+.pbtn.pbr{background:var(--red);border-color:var(--red);color:#fff;}
+.pbtn.pbr:hover{background:var(--red-dark);}
 
-/* FAQ */
-.faq-s{background:#fff;}
-.faq-g{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;}
-.fqi{background:var(--gray-light);border-radius:16px;overflow:hidden;border:1.5px solid var(--border);transition:.3s;}
-.fqi:hover{border-color:var(--blue);}
-.fqq{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 1.5rem;cursor:pointer;}
-.fqq span{font-weight:700;font-size:.9rem;color:var(--dark);}
-.fqic{width:28px;height:28px;border-radius:8px;background:#fff;display:grid;place-items:center;flex-shrink:0;font-size:1.2rem;color:var(--blue);transition:.3s;border:1px solid var(--border);}
-.fqi.open .fqic{transform:rotate(45deg);background:var(--blue);color:#fff;border-color:var(--blue);}
-.fqa{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;padding:0 1.5rem;font-size:.875rem;color:var(--gray);line-height:1.75;}
-.fqi.open .fqa{max-height:200px;padding:.75rem 1.5rem 1.25rem;}
+/* ─── FAQ ─── */
+.faq-sec{background:var(--white);}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;}
+.fqi{background:var(--gray-light);border-radius:10px;overflow:hidden;border:1.5px solid var(--border-light);transition:.3s;}
+.fqi:hover{border-color:rgba(204,18,18,.3);}
+.fqq{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.4rem;cursor:pointer;gap:1rem;}
+.fqq span{font-weight:700;font-size:.9rem;color:var(--black);}
+.fqic{width:26px;height:26px;border-radius:6px;background:#fff;display:grid;place-items:center;flex-shrink:0;font-size:1.1rem;color:var(--red);transition:.3s;border:1px solid var(--border-light);}
+.fqi.open .fqic{transform:rotate(45deg);background:var(--red);color:#fff;border-color:var(--red);}
+.fqa{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s;padding:0 1.4rem;font-size:.875rem;color:var(--gray-mid);line-height:1.75;}
+.fqi.open .fqa{max-height:200px;padding:.5rem 1.4rem 1.25rem;}
 
-/* CTA */
-.cta-s{background:var(--blue);padding:100px 5%;position:relative;overflow:hidden;}
-.cb1{position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(80px);opacity:.3;background:var(--blue-mid);top:-200px;right:-100px;}
-.cb2{position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(80px);opacity:.3;background:#0090BF;bottom:-150px;left:-80px;}
-.cta-in{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:2;}
-.cta-in h2{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:1rem;}
-.cta-in p{font-size:1.1rem;color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 2.5rem;}
+/* ─── CTA ─── */
+.cta-sec{background:var(--black);padding:100px 5%;position:relative;overflow:hidden;}
+.cta-sec::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(204,18,18,.12) 0%,transparent 60%);}
+.cta-sec::after{content:'';position:absolute;top:0;right:0;width:3px;height:100%;background:var(--red);}
+.cta-in{max-width:750px;margin:0 auto;text-align:center;position:relative;z-index:2;}
+.cta-in h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:900;letter-spacing:-1px;text-transform:uppercase;color:#fff;margin-bottom:1rem;line-height:.95;}
+.cta-in h2 .r{color:var(--red);}
+.cta-in p{font-size:1.05rem;color:rgba(255,255,255,.6);max-width:500px;margin:0 auto 2.5rem;line-height:1.75;}
 .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
-.btn-wh{padding:.85rem 2.25rem;border-radius:50px;background:#fff;color:var(--blue);font-weight:800;font-size:.95rem;text-decoration:none;transition:.3s;box-shadow:0 8px 28px rgba(0,0,0,.15);}
-.btn-wh:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,0,0,.25);}
-.btn-ow{padding:.85rem 2.25rem;border-radius:50px;border:2px solid rgba(255,255,255,.4);color:#fff;font-weight:700;font-size:.95rem;text-decoration:none;transition:.3s;}
-.btn-ow:hover{background:rgba(255,255,255,.12);border-color:#fff;transform:translateY(-2px);}
-.cta-tr{display:flex;align-items:center;justify-content:center;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;}
-.cta-ti{display:flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.7);font-size:.82rem;font-weight:600;}
+.cta-trust{display:flex;align-items:center;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap;}
+.cti{display:flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.5);font-size:.8rem;font-weight:600;}
+.cti .dot{width:5px;height:5px;border-radius:50%;background:var(--red);}
 
-/* FOOTER */
-footer{background:var(--dark-2);padding:80px 5% 0;}
-.fg{display:grid;grid-template-columns:2.5fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.08);}
-.fbr .logo{display:inline-flex;margin-bottom:1rem;}
-.fbr .logo-icon::before{animation:none;background:linear-gradient(135deg,var(--blue),var(--blue-mid));}
-.fbr .logo em{color:var(--blue-mid);}
-.fd{color:rgba(255,255,255,.45);font-size:.875rem;line-height:1.75;max-width:280px;margin-bottom:1.5rem;}
-.fsoc{display:flex;gap:.6rem;}
-.fso{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;text-decoration:none;transition:.3s;}
-.fso:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-2px);}
-.fc5 h5{font-family:'Syne',sans-serif;font-weight:800;font-size:.9rem;color:#fff;margin-bottom:1.25rem;letter-spacing:-.2px;}
-.fc5 ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
-.fc5 a{color:rgba(255,255,255,.45);font-size:.85rem;text-decoration:none;transition:.2s;}
-.fc5 a:hover{color:rgba(255,255,255,.9);}
+/* ─── FOOTER ─── */
+footer{background:#0A0A0A;border-top:1px solid rgba(255,255,255,.05);padding:80px 5% 0;}
+.fgrid{display:grid;grid-template-columns:2.5fr 1fr 1fr 1.5fr;gap:3rem;padding-bottom:4rem;border-bottom:1px solid rgba(255,255,255,.06);}
+.fbrand-col{}
+.fdesc{color:rgba(255,255,255,.35);font-size:.875rem;line-height:1.75;max-width:280px;margin:1rem 0 1.5rem;}
+.fsocs{display:flex;gap:.6rem;}
+.fso{width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.9rem;text-decoration:none;transition:.3s;}
+.fso:hover{background:var(--red);border-color:var(--red);transform:translateY(-2px);}
+.fcol h5{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:1.25rem;}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.fcol a{color:rgba(255,255,255,.35);font-size:.85rem;text-decoration:none;transition:.2s;}
+.fcol a:hover{color:var(--red);}
 .fci{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.85rem;}
-.fci .fi{font-size:1rem;margin-top:1px;}
-.fci div{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.5;}
-.fci strong{display:block;color:rgba(255,255,255,.8);font-weight:700;font-size:.78rem;margin-bottom:1px;}
+.fci .fi{font-size:1rem;margin-top:2px;flex-shrink:0;}
+.fci div{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.5;}
+.fci strong{display:block;color:rgba(255,255,255,.7);font-weight:700;font-size:.78rem;margin-bottom:1px;}
+.fci a{color:rgba(255,255,255,.4);text-decoration:none;}
+.fci a:hover{color:var(--red);}
+.faccept{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:5px;background:rgba(204,18,18,.1);border:1px solid rgba(204,18,18,.25);color:var(--red);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:.5rem;}
+.faccept .dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:bk 1.4s infinite;}
 .fbot{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;flex-wrap:wrap;gap:1rem;}
-.fbot p{color:rgba(255,255,255,.3);font-size:.78rem;}
-.fbot-l{display:flex;gap:1.5rem;}
-.fbot-l a{color:rgba(255,255,255,.3);font-size:.78rem;text-decoration:none;transition:.2s;}
-.fbot-l a:hover{color:rgba(255,255,255,.7);}
-.fbadge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border-radius:50px;background:rgba(14,201,127,.1);border:1px solid rgba(14,201,127,.2);color:var(--green);font-size:.72rem;font-weight:700;}
+.fbot p{color:rgba(255,255,255,.2);font-size:.78rem;}
+.fbot-lnks{display:flex;gap:1.5rem;}
+.fbot-lnks a{color:rgba(255,255,255,.2);font-size:.78rem;text-decoration:none;transition:.2s;}
+.fbot-lnks a:hover{color:var(--red);}
 
-/* RESPONSIVE */
+/* ─── RESPONSIVE ─── */
 @media(max-width:1100px){
-  .hero-in{grid-template-columns:1fr;gap:3rem;}
-  .hero-r{max-width:500px;margin:0 auto;}
-  .port-g{grid-template-columns:repeat(2,1fr);}
-  .port-g .wide{grid-column:span 1;}
-  .why-in{grid-template-columns:1fr;}
-  .stats-g{grid-template-columns:repeat(2,1fr);}
-  .fg{grid-template-columns:1fr 1fr;}
-  .tst-g{grid-template-columns:1fr 1fr;}
-  .pri-g{grid-template-columns:1fr 1fr;}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-right{max-width:480px;margin:0 auto;}
+  .svcs-grid{grid-template-columns:repeat(2,1fr);}
+  .port-grid{grid-template-columns:repeat(2,1fr);}
+  .port-grid .wide{grid-column:span 1;}
+  .why-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .tst-grid{grid-template-columns:1fr 1fr;}
+  .pri-grid{grid-template-columns:1fr 1fr;}
+  .fgrid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:768px){
-  .nav-c,.nav-r{display:none;}
-  .ham{display:flex;}
+  .nav-links,.nav-actions{display:none;}
+  .ham-btn{display:flex;}
   section{padding:70px 5%;}
   .hero{padding:100px 5% 60px;}
-  .hero h1{font-size:2.4rem;}
+  .hero h1{font-size:3rem;}
+  .svcs-grid{grid-template-columns:1fr;}
   .panels .pan.on{grid-template-columns:1fr;}
-  .pv{display:none;}
-  .proc-g{grid-template-columns:1fr 1fr;}
-  .proc-g::before{display:none;}
-  .port-g{grid-template-columns:1fr;}
-  .tst-g{grid-template-columns:1fr;}
-  .pri-g{grid-template-columns:1fr;}
-  .faq-g{grid-template-columns:1fr;}
-  .fg{grid-template-columns:1fr;}
+  .panvis{display:none;}
+  .proc-steps{grid-template-columns:1fr 1fr;}
+  .proc-steps::before{display:none;}
+  .port-grid{grid-template-columns:1fr;}
+  .tst-grid{grid-template-columns:1fr;}
+  .pri-grid{grid-template-columns:1fr;}
+  .faq-grid{grid-template-columns:1fr;}
+  .fgrid{grid-template-columns:1fr;}
   .fbot{flex-direction:column;text-align:center;}
-  .hero-proof{flex-wrap:wrap;}
-  .pdiv{display:none;}
-  .why-in{grid-template-columns:1fr;}
+  .hero-trust{gap:1rem;}
 }
 @media(max-width:480px){
-  .hero h1{font-size:2rem;letter-spacing:-1px;}
-  .proc-g{grid-template-columns:1fr;}
-  .stats-g{grid-template-columns:1fr 1fr;}
-  .hero-acts{flex-direction:column;}
-  .hero-acts .btn-p,.hero-acts .btn-s{justify-content:center;}
+  .hero h1{font-size:2.5rem;}
+  .proc-steps{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .hero-actions{flex-direction:column;}
+  .hero-actions .btn-red,.hero-actions .btn-outline-white{justify-content:center;}
   .stabs{overflow-x:auto;padding-bottom:.5rem;}
 }
 </style>
 </head>
 <body>
 
-<div id="loader"><div class="ld-brand"><em>dot</em>com</div><div class="ld-dots"><span></span><span></span><span></span></div></div>
+<!-- LOADER -->
+<div id="ldr">
+  <div class="ldr-logo">
+    <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+      <circle cx="26" cy="26" r="25" fill="#161616" stroke="#CC1212" stroke-width="2"/>
+      <rect x="12" y="14" width="28" height="24" rx="4" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+      <circle cx="18" cy="26" r="4" fill="#CC1212"/>
+      <path d="M26 19 Q38 19 38 26 Q38 33 26 33 L24 33 L24 19 Z" fill="white" opacity=".9"/>
+      <text x="27" y="30" font-family="Arial" font-size="7" font-weight="700" fill="#0D0D0D" text-anchor="middle">om</text>
+    </svg>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:#fff;letter-spacing:-.5px;">Dot<span style="color:#CC1212">Com</span></div>
+  </div>
+  <div class="ldr-dots"><span></span><span></span><span></span></div>
+</div>
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="logo"><div class="logo-icon"></div><span>dot<em>com</em></span></a>
-  <div class="nav-c">
-    <a href="#services">Services</a><a href="#works">Our Work</a>
-    <a href="#process">Process</a><a href="#about">Why Us</a><a href="#pricing">Pricing</a>
+  <a href="#" class="nav-logo">
+    <svg class="logo-mark" width="44" height="44" viewBox="0 0 52 52" fill="none">
+      <circle cx="26" cy="26" r="25" fill="#0D0D0D" stroke="#CC1212" stroke-width="2"/>
+      <circle cx="18" cy="26" r="4" fill="#CC1212"/>
+      <path d="M26 18 Q39 18 39 26 Q39 34 26 34 L23 34 L23 18 Z" fill="white" opacity=".95"/>
+      <text x="28" y="30.5" font-family="Arial Black,Arial" font-size="7.5" font-weight="900" fill="#0D0D0D" text-anchor="middle">om</text>
+    </svg>
+    <div class="logo-wordmark">
+      <span class="brand">Dot<span style="color:var(--red)">Com</span></span>
+      <span class="tagline">— Customer Satisfaction —</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#works">Our Work</a>
+    <a href="#process">Process</a>
+    <a href="#about">Why Us</a>
+    <a href="#pricing">Pricing</a>
   </div>
-  <div class="nav-r">
-    <a href="tel:+923001234567" class="btn-gh">📞 Call Us</a>
-    <a href="#contact" class="btn-nc">Free Consultation →</a>
+  <div class="nav-actions">
+    <a href="tel:03092156075" class="btn-ghost-nav">📞 03092156075</a>
+    <a href="#contact" class="btn-cta-nav">Free Consultation →</a>
   </div>
-  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+  <button class="ham-btn" id="ham"><span></span><span></span><span></span></button>
 </nav>
-<div class="mob-nav" id="mobNav">
-  <a href="#services">Services</a><a href="#works">Our Work</a><a href="#process">Process</a>
-  <a href="#about">Why Us</a><a href="#pricing">Pricing</a>
-  <a href="#contact" class="mc">Free Consultation →</a>
+
+<!-- MOBILE DRAWER -->
+<div class="mob-drawer" id="mobDrw">
+  <a href="#services">Services</a>
+  <a href="#works">Our Work</a>
+  <a href="#process">Process</a>
+  <a href="#about">Why Us</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#contact" class="mob-cta">Free Consultation →</a>
 </div>
 
-<!-- HERO -->
+<!-- ─── HERO ─── -->
 <section class="hero" id="home">
-  <div class="hblob hb1"></div><div class="hblob hb2"></div><div class="hblob hb3"></div>
-  <div class="hero-in">
+  <div class="hero-sweep"></div>
+  <div class="hero-dots" id="hDots"></div>
+  <div class="hero-inner">
     <div class="hero-l">
-      <div class="hero-badge"><span class="ldot"></span>Karachi's #1 Digital Agency</div>
-      <h1>We Make Your<br>Brand <span class="hl-blue">Impossible</span><br>to <span class="hl-coral">Ignore</span> Online</h1>
-      <p class="hero-desc">Full-spectrum digital marketing — high-ROAS ad campaigns, social media mastery, content creation, SEO, and brand strategy. Real growth. Real results.</p>
-      <div class="hero-acts">
-        <a href="#contact" class="btn-p">Start Growing Today<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#works" class="btn-s">🎯 See Our Work</a>
+      <div class="hero-eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Karachi's #1 Digital Agency</span>
       </div>
-      <div class="hero-proof">
-        <div style="display:flex;align-items:center;gap:.75rem;">
-          <div class="pavs"><div class="pav pa">AK</div><div class="pav pb">SR</div><div class="pav pc">RM</div><div class="pav pd">NF</div></div>
-          <div class="pt"><strong>500+</strong> brands trust us</div>
-        </div>
-        <div class="pdiv"></div>
-        <div class="pst"><div class="num">4.9★</div><div class="lbl">Client Rating</div></div>
-        <div class="pdiv"></div>
-        <div class="pst"><div class="num">340%</div><div class="lbl">Avg. ROAS Boost</div></div>
+      <h1>
+        GROW YOUR<br>
+        BRAND <span class="red">ONLINE</span><br>
+        WITH DOTCOM
+      </h1>
+      <p class="hero-sub">Full-spectrum digital marketing — <strong>Paid Ads, Social Media, Content, SEO & Brand Strategy.</strong> We turn clicks into customers and followers into revenue.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-red">
+          Get Free Consultation
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#works" class="btn-outline-white">📊 See Our Work</a>
+      </div>
+      <div class="hero-trust">
+        <div class="ht-item"><div class="dot"></div>500+ Brands Served</div>
+        <div class="ht-item"><div class="dot"></div>4.9★ Client Rating</div>
+        <div class="ht-item"><div class="dot"></div>340% Avg. ROAS Boost</div>
       </div>
     </div>
-    <div class="hero-r">
-      <div class="fcrd fc-t"><div class="fi">📈</div><div class="fv fg">+340%</div><div class="fl">Revenue Growth</div></div>
-      <div class="hero-dash">
-        <div class="dh"><span class="dt">Campaign Performance</span><span class="db">↑ 28% this month</span></div>
-        <div class="dchart"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
-        <div class="dstats">
-          <div class="ds"><div class="dsv">12.4M</div><div class="dsl">Impressions</div></div>
-          <div class="ds"><div class="dsv">8.2%</div><div class="dsl">CTR Rate</div></div>
-          <div class="ds"><div class="dsv">5.1x</div><div class="dsl">ROAS</div></div>
+    <div class="hero-right">
+      <div class="fcard fcard-tl"><div class="fi">📈</div><div class="fv red">+340%</div><div class="fl">Revenue Growth</div></div>
+      <div class="hero-dashboard">
+        <div class="dash-top">
+          <span class="dash-title">Campaign Dashboard</span>
+          <div class="dash-live"><div class="blink"></div>Live</div>
+        </div>
+        <div class="dash-chart">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+        <div class="dash-metrics">
+          <div class="dm"><div class="v">12.4M</div><div class="l">Impressions</div></div>
+          <div class="dm"><div class="v">5.1x</div><div class="l">ROAS</div></div>
+          <div class="dm"><div class="v">8.2%</div><div class="l">CTR</div></div>
         </div>
       </div>
-      <div class="fcrd fc-b"><div class="fi">✅</div><div class="fv">500+</div><div class="fl">Happy Clients</div></div>
+      <div class="fcard fcard-br"><div class="fi">✅</div><div class="fv">500+</div><div class="fl">Happy Clients</div></div>
     </div>
   </div>
 </section>
 
 <!-- MARQUEE -->
-<div class="mq-sec"><div class="mq-track">
-  <span class="mq-item">Google Ads<span class="mq-dot"></span></span>
-  <span class="mq-item">Meta Advertising<span class="mq-dot"></span></span>
-  <span class="mq-item">TikTok Marketing<span class="mq-dot"></span></span>
-  <span class="mq-item">Instagram Growth<span class="mq-dot"></span></span>
-  <span class="mq-item">SEO & Content<span class="mq-dot"></span></span>
-  <span class="mq-item">YouTube Ads<span class="mq-dot"></span></span>
-  <span class="mq-item">Brand Strategy<span class="mq-dot"></span></span>
-  <span class="mq-item">Email Marketing<span class="mq-dot"></span></span>
-  <span class="mq-item">Influencer Campaigns<span class="mq-dot"></span></span>
-  <span class="mq-item">Lead Generation<span class="mq-dot"></span></span>
-  <span class="mq-item">E-Commerce Growth<span class="mq-dot"></span></span>
-  <span class="mq-item">Google Ads<span class="mq-dot"></span></span>
-  <span class="mq-item">Meta Advertising<span class="mq-dot"></span></span>
-  <span class="mq-item">TikTok Marketing<span class="mq-dot"></span></span>
-  <span class="mq-item">Instagram Growth<span class="mq-dot"></span></span>
-  <span class="mq-item">SEO & Content<span class="mq-dot"></span></span>
-  <span class="mq-item">YouTube Ads<span class="mq-dot"></span></span>
-  <span class="mq-item">Brand Strategy<span class="mq-dot"></span></span>
-  <span class="mq-item">Email Marketing<span class="mq-dot"></span></span>
-  <span class="mq-item">Influencer Campaigns<span class="mq-dot"></span></span>
-  <span class="mq-item">Lead Generation<span class="mq-dot"></span></span>
-  <span class="mq-item">E-Commerce Growth<span class="mq-dot"></span></span>
-</div></div>
+<div class="mq">
+  <div class="mq-track">
+    <span class="mq-item">Google Ads<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Meta Advertising<span class="mq-sep">◆</span></span>
+    <span class="mq-item">TikTok Marketing<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Instagram Growth<span class="mq-sep">◆</span></span>
+    <span class="mq-item">SEO & SEM<span class="mq-sep">◆</span></span>
+    <span class="mq-item">YouTube Ads<span class="mq-sep">◆</span></span>
+    <span class="mq-item">PPC Advertising<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Content Marketing<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Website Development<span class="mq-sep">◆</span></span>
+    <span class="mq-item">E-Commerce Solutions<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Email Marketing<span class="mq-sep">◆</span></span>
+    <!-- duplicate -->
+    <span class="mq-item">Google Ads<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Meta Advertising<span class="mq-sep">◆</span></span>
+    <span class="mq-item">TikTok Marketing<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Instagram Growth<span class="mq-sep">◆</span></span>
+    <span class="mq-item">SEO & SEM<span class="mq-sep">◆</span></span>
+    <span class="mq-item">YouTube Ads<span class="mq-sep">◆</span></span>
+    <span class="mq-item">PPC Advertising<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Content Marketing<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Website Development<span class="mq-sep">◆</span></span>
+    <span class="mq-item">E-Commerce Solutions<span class="mq-sep">◆</span></span>
+    <span class="mq-item">Email Marketing<span class="mq-sep">◆</span></span>
+  </div>
+</div>
 
 <!-- STATS -->
-<section class="stats-s"><div class="stats-g">
-  <div class="sb rr"><div class="num" data-t="500"><span>0</span>+</div><div class="lbl">Brands Served <em>Nationwide</em></div></div>
-  <div class="sb rr d1"><div class="num" data-t="12"><span>0</span>M+</div><div class="lbl">Impressions <em>Generated</em></div></div>
-  <div class="sb rr d2"><div class="num" data-t="340"><span>0</span>%</div><div class="lbl">Average <em>ROAS Increase</em></div></div>
-  <div class="sb rr d3"><div class="num" data-t="98"><span>0</span>%</div><div class="lbl">Client <em>Retention Rate</em></div></div>
-</div></section>
+<section class="stats-sec">
+  <div class="stats-grid con">
+    <div class="stat rr"><div class="num" data-t="500"><span>0</span><em>+</em></div><div class="lbl">Brands Served</div></div>
+    <div class="stat rr d1"><div class="num" data-t="12"><span>0</span><em>M+</em></div><div class="lbl">Impressions Generated</div></div>
+    <div class="stat rr d2"><div class="num" data-t="340"><span>0</span><em>%</em></div><div class="lbl">Avg. ROAS Increase</div></div>
+    <div class="stat rr d3"><div class="num" data-t="98"><span>0</span><em>%</em></div><div class="lbl">Client Retention Rate</div></div>
+  </div>
+</section>
 
-<!-- SERVICES -->
-<section class="svs" id="services"><div class="con">
-  <div class="rr">
-    <div class="tag tb"><span class="pip"></span>What We Do</div>
-    <h2 class="st">Every Service You Need<br>to Dominate Online</h2>
-    <p class="ss">From paid ads to social media, SEO and branding — we handle every digital channel so you can focus on your business.</p>
-  </div>
-  <div class="stabs rr">
-    <button class="stab on" data-p="ads">📢 Paid Ads</button>
-    <button class="stab" data-p="social">📱 Social Media</button>
-    <button class="stab" data-p="content">✍️ Content</button>
-    <button class="stab" data-p="seo">🔍 SEO</button>
-    <button class="stab" data-p="brand">🎯 Branding</button>
-  </div>
-  <div class="panels">
-    <div class="pan on" id="pan-ads">
-      <div class="pi">
-        <h3>High-ROAS Paid Advertising</h3>
-        <p>Precision-targeted ad campaigns across Google, Meta, TikTok, and YouTube — built to deliver maximum return on every rupee invested. No guesswork, only data-driven results.</p>
-        <ul class="pfts">
-          <li><span class="chk">✓</span>Google Search & Shopping Ads</li>
-          <li><span class="chk">✓</span>Meta (Facebook & Instagram) Ads</li>
-          <li><span class="chk">✓</span>TikTok & YouTube Campaigns</li>
-          <li><span class="chk">✓</span>Retargeting & Lookalike Audiences</li>
-          <li><span class="chk">✓</span>A/B Testing & Creative Optimization</li>
-          <li><span class="chk">✓</span>Real-Time ROI Tracking Dashboard</li>
-        </ul>
-        <a href="#contact" class="btn-p" style="width:max-content;">Start Your Campaign →</a>
-      </div>
-      <div class="pv pvb"><div class="pem">📢</div><div class="pmets"><div class="pm"><div class="v" style="color:var(--blue)">5.2x</div><div class="l">Avg. ROAS</div></div><div class="pm"><div class="v" style="color:var(--green)">8.4%</div><div class="l">CTR Rate</div></div><div class="pm"><div class="v" style="color:var(--coral)">-34%</div><div class="l">CPA Drop</div></div></div></div>
+<!-- SERVICES CARDS -->
+<section class="svcs-sec" id="services">
+  <div class="con">
+    <div class="rr">
+      <div class="eyebrow"><div class="ep"></div><span>What We Do</span></div>
+      <h2 class="stitle">EVERY SERVICE TO<br><span class="r">DOMINATE YOUR MARKET</span></h2>
+      <p class="ssub">From precision ad campaigns to full social media management — we handle every digital channel so you can focus on running your business.</p>
     </div>
-    <div class="pan" id="pan-social">
-      <div class="pi">
-        <h3>Full Social Media Management</h3>
-        <p>We own your social presence end-to-end — strategy, scheduling, community engagement, and growth hacking. Your audience grows while you sleep.</p>
-        <ul class="pfts">
-          <li><span class="chk">✓</span>Instagram, Facebook, TikTok, LinkedIn</li>
-          <li><span class="chk">✓</span>Content Calendar & Growth Strategy</li>
-          <li><span class="chk">✓</span>Community Management & DMs</li>
-          <li><span class="chk">✓</span>Hashtag & Trend Research</li>
-          <li><span class="chk">✓</span>Competitor Analysis</li>
-          <li><span class="chk">✓</span>Growth Hacking Techniques</li>
-        </ul>
-        <a href="#contact" class="btn-p" style="width:max-content;">Grow My Audience →</a>
-      </div>
-      <div class="pv pvc"><div class="pem">📱</div><div class="pmets"><div class="pm"><div class="v" style="color:var(--coral)">50K+</div><div class="l">Avg. Followers</div></div><div class="pm"><div class="v" style="color:var(--blue)">12%</div><div class="l">Engagement</div></div><div class="pm"><div class="v" style="color:var(--green)">90d</div><div class="l">To Results</div></div></div></div>
-    </div>
-    <div class="pan" id="pan-content">
-      <div class="pi">
-        <h3>Scroll-Stopping Content Creation</h3>
-        <p>Reels, carousels, graphics, and copy that make your audience stop, watch, and buy. Professional quality delivered consistently every month.</p>
-        <ul class="pfts">
-          <li><span class="chk">✓</span>Short-Form Reels & TikTok Videos</li>
-          <li><span class="chk">✓</span>Custom Graphic Design</li>
-          <li><span class="chk">✓</span>Sales Copywriting</li>
-          <li><span class="chk">✓</span>Blog & SEO Article Writing</li>
-          <li><span class="chk">✓</span>Email Newsletter Content</li>
-          <li><span class="chk">✓</span>Product Photography Direction</li>
-        </ul>
-        <a href="#contact" class="btn-p" style="width:max-content;">Create My Content →</a>
-      </div>
-      <div class="pv pvg"><div class="pem">✍️</div><div class="pmets"><div class="pm"><div class="v" style="color:var(--green)">24</div><div class="l">Posts/Month</div></div><div class="pm"><div class="v" style="color:var(--blue)">8</div><div class="l">Reels/Month</div></div><div class="pm"><div class="v" style="color:var(--coral)">48h</div><div class="l">Turnaround</div></div></div></div>
-    </div>
-    <div class="pan" id="pan-seo">
-      <div class="pi">
-        <h3>SEO That Compounds Over Time</h3>
-        <p>Rank higher, stay there longer. Our technical and content SEO drives organic traffic that keeps growing — without paying for every single click.</p>
-        <ul class="pfts">
-          <li><span class="chk">✓</span>Full Technical SEO Audit</li>
-          <li><span class="chk">✓</span>On-Page Optimization</li>
-          <li><span class="chk">✓</span>Quality Link Building</li>
-          <li><span class="chk">✓</span>Local SEO & Google Maps</li>
-          <li><span class="chk">✓</span>Keyword Research & Strategy</li>
-          <li><span class="chk">✓</span>Monthly Ranking Reports</li>
-        </ul>
-        <a href="#contact" class="btn-p" style="width:max-content;">Rank Higher →</a>
-      </div>
-      <div class="pv pvy"><div class="pem">🔍</div><div class="pmets"><div class="pm"><div class="v" style="color:var(--yellow)">Top 3</div><div class="l">Avg. Rank</div></div><div class="pm"><div class="v" style="color:var(--blue)">+180%</div><div class="l">Traffic</div></div><div class="pm"><div class="v" style="color:var(--green)">6mo</div><div class="l">To Rank 1</div></div></div></div>
-    </div>
-    <div class="pan" id="pan-brand">
-      <div class="pi">
-        <h3>Brand Strategy & Identity</h3>
-        <p>Build a brand that commands premium prices and instant recognition. We craft complete identities that make you unforgettable in a crowded market.</p>
-        <ul class="pfts">
-          <li><span class="chk">✓</span>Brand Audit & Positioning</li>
-          <li><span class="chk">✓</span>Logo & Visual Identity Design</li>
-          <li><span class="chk">✓</span>Brand Voice & Tone Guide</li>
-          <li><span class="chk">✓</span>Competitor Differentiation</li>
-          <li><span class="chk">✓</span>Brand Style Guidelines</li>
-          <li><span class="chk">✓</span>Naming & Tagline Development</li>
-        </ul>
-        <a href="#contact" class="btn-p" style="width:max-content;">Build My Brand →</a>
-      </div>
-      <div class="pv pvp"><div class="pem">🎯</div><div class="pmets"><div class="pm"><div class="v" style="color:var(--purple)">100%</div><div class="l">Brand Recall</div></div><div class="pm"><div class="v" style="color:var(--blue)">Premium</div><div class="l">Positioning</div></div><div class="pm"><div class="v" style="color:var(--green)">3x</div><div class="l">Price Power</div></div></div></div>
+    <div class="svcs-grid">
+      <div class="svc-card rr"><div class="svc-icon">📢</div><h3>Paid Advertising</h3><p>High-ROAS Google, Meta, TikTok & YouTube campaigns. Every rupee of your budget is tracked and optimized for maximum return.</p><div class="svc-tags"><span class="stg">Google Ads</span><span class="stg">Meta Ads</span><span class="stg">TikTok</span><span class="stg">YouTube</span></div><div class="svc-arrow">Learn More →</div></div>
+      <div class="svc-card rr d1"><div class="svc-icon">📱</div><h3>Social Media Management</h3><p>Full management across all platforms — strategy, posting, community engagement, and follower growth on autopilot.</p><div class="svc-tags"><span class="stg">Instagram</span><span class="stg">Facebook</span><span class="stg">TikTok</span><span class="stg">LinkedIn</span></div><div class="svc-arrow">Learn More →</div></div>
+      <div class="svc-card rr d2"><div class="svc-icon">✍️</div><h3>Content Creation</h3><p>Scroll-stopping reels, carousels, graphics, and copy that convert followers into buyers. Professional quality, consistently delivered.</p><div class="svc-tags"><span class="stg">Reels</span><span class="stg">Graphics</span><span class="stg">Copywriting</span><span class="stg">Videos</span></div><div class="svc-arrow">Learn More →</div></div>
+      <div class="svc-card rr"><div class="svc-icon">🔍</div><h3>SEO & SEM</h3><p>Rank on Google's first page and dominate search. Our technical and content SEO builds organic traffic that grows without ongoing ad spend.</p><div class="svc-tags"><span class="stg">On-Page SEO</span><span class="stg">Link Building</span><span class="stg">Local SEO</span></div><div class="svc-arrow">Learn More →</div></div>
+      <div class="svc-card rr d1"><div class="svc-icon">🌐</div><h3>Website Development</h3><p>Fast, beautiful, conversion-optimized websites and landing pages built to turn visitors into leads and customers around the clock.</p><div class="svc-tags"><span class="stg">WordPress</span><span class="stg">E-Commerce</span><span class="stg">Landing Pages</span></div><div class="svc-arrow">Learn More →</div></div>
+      <div class="svc-card rr d2"><div class="svc-icon">📧</div><h3>Email Marketing</h3><p>Automated email sequences and newsletters that nurture leads, recover abandoned carts, and generate repeat revenue on autopilot.</p><div class="svc-tags"><span class="stg">Automation</span><span class="stg">Newsletters</span><span class="stg">Sequences</span></div><div class="svc-arrow">Learn More →</div></div>
     </div>
   </div>
-</div></section>
+</section>
 
-<!-- PORTFOLIO -->
-<section class="port-s" id="works"><div class="con">
-  <div class="rr">
-    <div class="tag tc"><span class="pip"></span>Sample Work</div>
-    <h2 class="st">Results We've Delivered<br>for Real Brands</h2>
-    <p class="ss">Every project is a growth story. Here's a snapshot of what we've achieved across industries.</p>
+<!-- SERVICES DEEP-DIVE TABS -->
+<section class="svc-tabs-sec">
+  <div class="con">
+    <div class="rr">
+      <div class="eyebrow"><div class="ep"></div><span>Service Deep-Dive</span></div>
+      <h2 class="stitle">HOW WE DELIVER<br><span class="r">REAL RESULTS</span></h2>
+    </div>
+    <div class="stabs rr">
+      <button class="stab on" data-p="ads">📢 Paid Ads</button>
+      <button class="stab" data-p="social">📱 Social Media</button>
+      <button class="stab" data-p="content">✍️ Content</button>
+      <button class="stab" data-p="seo">🔍 SEO</button>
+      <button class="stab" data-p="web">🌐 Web Dev</button>
+    </div>
+    <div class="panels">
+      <div class="pan on" id="pan-ads"><div class="paninfo"><h3>High-ROAS Paid Advertising</h3><p>We build precision ad campaigns across every major platform — engineered for maximum return on every rupee you spend. No guesswork, pure data-driven execution.</p><ul class="panfeats"><li><span class="ck">✓</span>Google Search & Shopping Ads</li><li><span class="ck">✓</span>Facebook & Instagram Ads</li><li><span class="ck">✓</span>TikTok & YouTube Campaigns</li><li><span class="ck">✓</span>Retargeting & Lookalike Audiences</li><li><span class="ck">✓</span>A/B Testing & Creative Optimization</li><li><span class="ck">✓</span>Real-Time ROI Tracking</li></ul><a href="#contact" class="btn-red" style="width:max-content;">Start Your Campaign →</a></div><div class="panvis pv1"><div class="pem">📢</div><div class="pmets"><div class="pm"><div class="v" style="color:var(--red)">5.2x</div><div class="l">Avg. ROAS</div></div><div class="pm"><div class="v">8.4%</div><div class="l">CTR Rate</div></div><div class="pm"><div class="v" style="color:#0EC97F">-34%</div><div class="l">CPA Drop</div></div></div></div></div>
+      <div class="pan" id="pan-social"><div class="paninfo"><h3>Full Social Media Management</h3><p>End-to-end management of your social presence. We handle strategy, scheduling, community management and growth hacking so your audience grows while you sleep.</p><ul class="panfeats"><li><span class="ck">✓</span>Instagram, Facebook, TikTok, LinkedIn</li><li><span class="ck">✓</span>Content Calendar & Strategy</li><li><span class="ck">✓</span>Community Management & DMs</li><li><span class="ck">✓</span>Hashtag & Trend Research</li><li><span class="ck">✓</span>Competitor Analysis</li><li><span class="ck">✓</span>Monthly Growth Reports</li></ul><a href="#contact" class="btn-red" style="width:max-content;">Grow My Accounts →</a></div><div class="panvis pv2"><div class="pem">📱</div><div class="pmets"><div class="pm"><div class="v" style="color:var(--red)">50K+</div><div class="l">Avg Followers</div></div><div class="pm"><div class="v">12%</div><div class="l">Engagement</div></div><div class="pm"><div class="v">90d</div><div class="l">To Results</div></div></div></div></div>
+      <div class="pan" id="pan-content"><div class="paninfo"><h3>Scroll-Stopping Content</h3><p>Reels, carousels, graphics, and copy that stop the scroll, hold attention, and convert. Professional quality delivered consistently every single month.</p><ul class="panfeats"><li><span class="ck">✓</span>Short-Form Reels & TikTok Videos</li><li><span class="ck">✓</span>Custom Graphic Design</li><li><span class="ck">✓</span>Sales Copywriting</li><li><span class="ck">✓</span>Blog & SEO Articles</li><li><span class="ck">✓</span>Email Newsletter Content</li><li><span class="ck">✓</span>48-Hour Turnaround</li></ul><a href="#contact" class="btn-red" style="width:max-content;">Create My Content →</a></div><div class="panvis pv3"><div class="pem">✍️</div><div class="pmets"><div class="pm"><div class="v">24</div><div class="l">Posts/Month</div></div><div class="pm"><div class="v" style="color:var(--red)">8</div><div class="l">Reels/Month</div></div><div class="pm"><div class="v">48h</div><div class="l">Turnaround</div></div></div></div></div>
+      <div class="pan" id="pan-seo"><div class="paninfo"><h3>SEO That Compounds</h3><p>Rank higher, stay there longer. Our technical and content SEO strategies drive compounding organic traffic — the kind that grows without paying per click.</p><ul class="panfeats"><li><span class="ck">✓</span>Full Technical SEO Audit</li><li><span class="ck">✓</span>On-Page Optimization</li><li><span class="ck">✓</span>Quality Link Building</li><li><span class="ck">✓</span>Local SEO & Google Maps</li><li><span class="ck">✓</span>Keyword Research & Strategy</li><li><span class="ck">✓</span>Monthly Ranking Reports</li></ul><a href="#contact" class="btn-red" style="width:max-content;">Rank Higher →</a></div><div class="panvis pv4"><div class="pem">🔍</div><div class="pmets"><div class="pm"><div class="v" style="color:var(--red)">Top 3</div><div class="l">Avg. Rank</div></div><div class="pm"><div class="v">+180%</div><div class="l">Traffic</div></div><div class="pm"><div class="v">6mo</div><div class="l">To Rank 1</div></div></div></div></div>
+      <div class="pan" id="pan-web"><div class="paninfo"><h3>Conversion-First Web Development</h3><p>Fast, stunning, mobile-perfect websites and e-commerce stores built to convert visitors into customers — not just look pretty.</p><ul class="panfeats"><li><span class="ck">✓</span>WordPress & Custom Websites</li><li><span class="ck">✓</span>E-Commerce Stores</li><li><span class="ck">✓</span>High-Converting Landing Pages</li><li><span class="ck">✓</span>Mobile-First & Fast Loading</li><li><span class="ck">✓</span>SEO-Ready Structure</li><li><span class="ck">✓</span>Ongoing Support & Maintenance</li></ul><a href="#contact" class="btn-red" style="width:max-content;">Build My Website →</a></div><div class="panvis pv5"><div class="pem">🌐</div><div class="pmets"><div class="pm"><div class="v" style="color:var(--red)">98</div><div class="l">PageSpeed</div></div><div class="pm"><div class="v">+60%</div><div class="l">Conversions</div></div><div class="pm"><div class="v">7d</div><div class="l">Delivery</div></div></div></div></div>
+    </div>
   </div>
-  <div class="pf-filt rr">
-    <button class="pfb on" data-f="all">All Work</button>
-    <button class="pfb" data-f="ads">Paid Ads</button>
-    <button class="pfb" data-f="social">Social Media</button>
-    <button class="pfb" data-f="brand">Branding</button>
-    <button class="pfb" data-f="seo">SEO</button>
+</section>
+
+<!-- PORTFOLIO / SAMPLE WORKS -->
+<section class="port-sec" id="works">
+  <div class="con">
+    <div class="rr">
+      <div class="eyebrow" style="color:var(--red);"><div class="ep"></div><span>Sample Work</span></div>
+      <h2 class="stitle stitle-wh">RESULTS WE'VE DELIVERED<br>FOR REAL <span class="r">BRANDS</span></h2>
+      <p class="ssub" style="color:rgba(255,255,255,.5);">Every project here is a real growth story — real businesses, real results, real numbers.</p>
+    </div>
+    <div class="port-filter rr">
+      <button class="pfbtn on" data-f="all">All</button>
+      <button class="pfbtn" data-f="ads">Paid Ads</button>
+      <button class="pfbtn" data-f="social">Social</button>
+      <button class="pfbtn" data-f="brand">Branding</button>
+      <button class="pfbtn" data-f="seo">SEO</button>
+      <button class="pfbtn" data-f="web">Web Dev</button>
+    </div>
+    <div class="port-grid">
+      <div class="wcard wide rr" data-cat="ads"><div class="wimg"><div class="wimg-bg wb1">🛍️</div><span class="wtag">Paid Ads</span><div class="wov">View Case Study ↗</div></div><div class="wbody"><div class="wcat">Fashion & E-Commerce</div><div class="wtitle">FashionForward PK — Meta & Google Ads Campaign</div><div class="wresults"><div class="wr"><div class="v">280%</div><div class="l">Revenue ↑</div></div><div class="wr wh"><div class="v">5.4x</div><div class="l">ROAS</div></div><div class="wr"><div class="v">-42%</div><div class="l">CPA Drop</div></div><div class="wr wh"><div class="v">3mo</div><div class="l">Timeline</div></div></div></div></div>
+      <div class="wcard rr d1" data-cat="social"><div class="wimg"><div class="wimg-bg wb2">🍕</div><span class="wtag">Social Media</span><div class="wov">View Case Study ↗</div></div><div class="wbody"><div class="wcat">F&B / Restaurant</div><div class="wtitle">SpicyBites — Instagram & TikTok Growth</div><div class="wresults"><div class="wr"><div class="v">52K</div><div class="l">Followers ↑</div></div><div class="wr wh"><div class="v">14%</div><div class="l">Engagement</div></div><div class="wr"><div class="v">90d</div><div class="l">Timeline</div></div></div></div></div>
+      <div class="wcard rr d2" data-cat="ads"><div class="wimg"><div class="wimg-bg wb3">💊</div><span class="wtag">Lead Gen</span><div class="wov">View Case Study ↗</div></div><div class="wbody"><div class="wcat">Healthcare</div><div class="wtitle">MediCare Plus — Patient Lead Generation</div><div class="wresults"><div class="wr"><div class="v">400+</div><div class="l">Leads/Month</div></div><div class="wr wh"><div class="v">Rs.180</div><div class="l">Cost/Lead</div></div><div class="wr"><div class="v">12x</div><div class="l">ROI</div></div></div></div></div>
+      <div class="wcard rr" data-cat="brand"><div class="wimg"><div class="wimg-bg wb4">🏠</div><span class="wtag">Branding</span><div class="wov">View Case Study ↗</div></div><div class="wbody"><div class="wcat">Real Estate</div><div class="wtitle">PropElite Realty — Brand Identity & Launch</div><div class="wresults"><div class="wr"><div class="v">New</div><div class="l">Brand Built</div></div><div class="wr wh"><div class="v">180%</div><div class="l">Inquiries ↑</div></div><div class="wr"><div class="v">3x</div><div class="l">Premium Rate</div></div></div></div></div>
+      <div class="wcard wide rr d1" data-cat="seo social"><div class="wimg"><div class="wimg-bg wb5">📚</div><span class="wtag">SEO + Social</span><div class="wov">View Case Study ↗</div></div><div class="wbody"><div class="wcat">EdTech / Online Education</div><div class="wtitle">LearnX Academy — SEO + Social for Course Enrollment</div><div class="wresults"><div class="wr"><div class="v">+420%</div><div class="l">Organic Traffic</div></div><div class="wr wh"><div class="v">1,200</div><div class="l">Course Sales</div></div><div class="wr"><div class="v">Rank 1</div><div class="l">Google</div></div><div class="wr wh"><div class="v">6mo</div><div class="l">Timeline</div></div></div></div></div>
+      <div class="wcard rr d2" data-cat="web ads"><div class="wimg"><div class="wimg-bg wb6">🚗</div><span class="wtag">Web + Ads</span><div class="wov">View Case Study ↗</div></div><div class="wbody"><div class="wcat">Automotive</div><div class="wtitle">AutoElite PK — Website & Ad Campaign</div><div class="wresults"><div class="wr"><div class="v">320%</div><div class="l">Sales ↑</div></div><div class="wr wh"><div class="v">4.8x</div><div class="l">ROAS</div></div><div class="wr"><div class="v">7d</div><div class="l">Launch</div></div></div></div></div>
+    </div>
   </div>
-  <div class="port-g">
-    <div class="wc wide rr" data-cat="ads"><div class="wi"><div class="wii wbl">🛍️</div><span class="wtag wt-b">Paid Ads</span><div class="wov">View Case Study ↗</div></div><div class="wb"><div class="wcl2">Fashion & E-Commerce</div><div class="wtit">FashionForward PK — Meta & Google Ads Campaign</div><div class="wres"><div class="wr"><div class="v">280%</div><div class="l">Revenue ↑</div></div><div class="wr grn"><div class="v">5.4x</div><div class="l">ROAS</div></div><div class="wr orl"><div class="v">-42%</div><div class="l">CPA Drop</div></div><div class="wr"><div class="v">3mo</div><div class="l">Timeline</div></div></div></div></div>
-    <div class="wc rr d1" data-cat="social"><div class="wi"><div class="wii wcl">🍕</div><span class="wtag wt-c">Social Media</span><div class="wov">View Case Study ↗</div></div><div class="wb"><div class="wcl2">F&B / Restaurant</div><div class="wtit">SpicyBites Chain — Instagram & TikTok Growth</div><div class="wres"><div class="wr orl"><div class="v">52K</div><div class="l">New Followers</div></div><div class="wr"><div class="v">14%</div><div class="l">Engagement</div></div><div class="wr grn"><div class="v">90d</div><div class="l">Timeline</div></div></div></div></div>
-    <div class="wc rr d2" data-cat="ads"><div class="wi"><div class="wii wgl">💊</div><span class="wtag wt-g">Lead Gen</span><div class="wov">View Case Study ↗</div></div><div class="wb"><div class="wcl2">Healthcare</div><div class="wtit">MediCare Plus — Patient Lead Generation</div><div class="wres"><div class="wr grn"><div class="v">400+</div><div class="l">Monthly Leads</div></div><div class="wr"><div class="v">Rs.180</div><div class="l">Cost/Lead</div></div><div class="wr orl"><div class="v">12x</div><div class="l">ROI</div></div></div></div></div>
-    <div class="wc rr" data-cat="brand"><div class="wi"><div class="wii wpl">🏠</div><span class="wtag wt-p">Branding</span><div class="wov">View Case Study ↗</div></div><div class="wb"><div class="wcl2">Real Estate</div><div class="wtit">PropElite Realty — Full Brand Identity & Launch</div><div class="wres"><div class="wr" style=""><div class="v" style="color:var(--purple)">New</div><div class="l">Brand Built</div></div><div class="wr grn"><div class="v">180%</div><div class="l">Inquiries ↑</div></div><div class="wr"><div class="v">3x</div><div class="l">Premium Rate</div></div></div></div></div>
-    <div class="wc wide rr d1" data-cat="seo social"><div class="wi"><div class="wii wyl">📚</div><span class="wtag wt-y">SEO + Social</span><div class="wov">View Case Study ↗</div></div><div class="wb"><div class="wcl2">EdTech / Online Education</div><div class="wtit">LearnX Academy — SEO + Social for Course Enrollment</div><div class="wres"><div class="wr"><div class="v">+420%</div><div class="l">Organic Traffic</div></div><div class="wr grn"><div class="v">1,200</div><div class="l">Course Sales</div></div><div class="wr orl"><div class="v">Rank 1</div><div class="l">Google</div></div><div class="wr"><div class="v">6mo</div><div class="l">Timeline</div></div></div></div></div>
-    <div class="wc rr d2" data-cat="ads brand"><div class="wi"><div class="wii wpk">🚗</div><span class="wtag wt-b">Ads + Brand</span><div class="wov">View Case Study ↗</div></div><div class="wb"><div class="wcl2">Automotive</div><div class="wtit">AutoElite PK — Google Ads & Brand Relaunch</div><div class="wres"><div class="wr"><div class="v">320%</div><div class="l">Sales ↑</div></div><div class="wr grn"><div class="v">4.8x</div><div class="l">ROAS</div></div><div class="wr orl"><div class="v">New</div><div class="l">Brand</div></div></div></div></div>
-  </div>
-</div></section>
+</section>
 
 <!-- PROCESS -->
-<section class="proc-s" id="process"><div class="con">
-  <div class="tc- rr">
-    <div class="tag tg" style="justify-content:center;"><span class="pip"></span>Our Process<span class="pip"></span></div>
-    <h2 class="st">How We Turn Your Brand<br>Into a Growth Machine</h2>
-    <p class="ss">A proven 4-step framework refined over 5 years and 500+ campaigns. Clear, fast, and built for results.</p>
+<section class="proc-sec" id="process">
+  <div class="con">
+    <div class="tc rr">
+      <div class="eyebrow" style="justify-content:center;"><div class="ep"></div><span>Our Process</span><div class="ep"></div></div>
+      <h2 class="stitle">HOW WE TURN YOUR BRAND<br>INTO A <span class="r">GROWTH MACHINE</span></h2>
+      <p class="ssub">A battle-tested 4-step framework built across 500+ campaigns in 5 years. Fast. Clear. Results-focused.</p>
+    </div>
+    <div class="proc-steps">
+      <div class="pstep rr"><div class="pnum">🔭</div><h3>Discovery & Audit</h3><p>We deep-dive into your brand, audience, and competitors to uncover opportunities most agencies miss — in 48 hours.</p></div>
+      <div class="pstep rr d1"><div class="pnum">🗺️</div><h3>Custom Strategy</h3><p>A tailored 90-day growth roadmap — channels, budgets, content pillars, and KPIs all aligned to your goals.</p></div>
+      <div class="pstep rr d2"><div class="pnum">🚀</div><h3>Launch & Execute</h3><p>Campaigns live in 72 hours. Every asset created, every pixel fired, every post scheduled — perfectly.</p></div>
+      <div class="pstep rr d3"><div class="pnum">📈</div><h3>Optimize & Scale</h3><p>Weekly analysis, relentless optimization. We double down on winners and scale what delivers maximum ROI.</p></div>
+    </div>
   </div>
-  <div class="proc-g">
-    <div class="pstep rr"><div class="psn">🔭</div><h3>Discovery & Audit</h3><p>Deep-dive into your brand, audience, and competitors. We uncover gaps and opportunities others miss within 48 hours.</p></div>
-    <div class="pstep rr d1"><div class="psn">🗺️</div><h3>Custom Strategy</h3><p>A tailored 90-day growth roadmap — channels, budgets, content pillars, and KPIs mapped to your specific goals.</p></div>
-    <div class="pstep rr d2"><div class="psn">🚀</div><h3>Launch & Execute</h3><p>Campaigns live within 72 hours. Every asset created, every pixel fired, every post scheduled to perfection.</p></div>
-    <div class="pstep rr d3"><div class="psn">📈</div><h3>Optimize & Scale</h3><p>Weekly analysis, relentless optimization. We double down on winners, cut losers, and scale maximum ROI.</p></div>
-  </div>
-</div></section>
+</section>
 
 <!-- WHY US -->
-<section class="why-s" id="about"><div class="why-in">
-  <div class="why-l">
-    <div class="tag" style="color:var(--blue-mid);"><span class="pip" style="background:var(--blue-mid);"></span>Why Dotcom</div>
-    <h2 class="st rr">The Last Agency<br>You'll Ever Need</h2>
-    <p class="ss rr">We've worked with 500+ brands and know exactly what separates agencies that look good from agencies that deliver results.</p>
-    <div class="why-cs">
-      <div class="wyc rr"><div class="wyi wyib">⚡</div><div><h4>Launches in 72 Hours</h4><p>No endless onboarding. Your first campaign is live within 3 business days of signing — guaranteed.</p></div></div>
-      <div class="wyc rr d1"><div class="wyi wyic">🎯</div><div><h4>Zero Vanity Metrics</h4><p>We report on revenue, leads, and ROAS — not likes and impressions. You always know your exact ROI.</p></div></div>
-      <div class="wyc rr d2"><div class="wyi wyig">🧠</div><div><h4>Dedicated Specialists</h4><p>Each channel gets an expert, not a generalist. Your ads specialist lives and breathes paid media — nothing else.</p></div></div>
-      <div class="wyc rr d3"><div class="wyi wyiy">💬</div><div><h4>Always-On Support</h4><p>WhatsApp, email, or call — we respond within 2 hours. Your campaigns never run unattended.</p></div></div>
+<section class="why-sec" id="about">
+  <div class="why-grid">
+    <div class="why-l">
+      <div class="eyebrow" style="color:rgba(204,18,18,.9)"><div class="ep"></div><span>Why DotCom</span></div>
+      <h2 class="stitle stitle-wh rr">THE LAST AGENCY<br>YOU'LL EVER <span class="r">NEED</span></h2>
+      <p class="ssub rr" style="color:rgba(255,255,255,.5)">500+ brands have grown with us. Here's what makes DotCom different from every other agency in Pakistan.</p>
+      <div class="why-cards">
+        <div class="wcard2 rr"><div class="wico">⚡</div><div><h4>Campaigns Live in 72 Hours</h4><p>No endless onboarding. Your first campaign goes live within 3 business days of signing — guaranteed.</p></div></div>
+        <div class="wcard2 rr d1"><div class="wico">🎯</div><div><h4>Zero Vanity Metrics</h4><p>We report on revenue, leads, and ROAS — not likes. You always know your exact return on investment.</p></div></div>
+        <div class="wcard2 rr d2"><div class="wico">🧠</div><div><h4>Dedicated Specialists</h4><p>Each service gets a dedicated expert — not a generalist juggling 30 accounts. Your ads get an ads expert, period.</p></div></div>
+        <div class="wcard2 rr d3"><div class="wico">💬</div><div><h4>Always-On WhatsApp Support</h4><p>Reach us on WhatsApp, call, or email. 2-hour response during business hours. Your campaigns never run unattended.</p></div></div>
+      </div>
+    </div>
+    <div class="why-r rr">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem;">Performance Benchmarks</div>
+      <div style="font-size:.78rem;color:rgba(255,255,255,.35);margin-bottom:2rem;text-transform:uppercase;letter-spacing:.5px;">DotCom vs. Industry Average</div>
+      <div class="scrs">
+        <div class="srow"><div class="slbl"><span>ROAS Delivery</span><span>5.2x avg</span></div><div class="sbar"><div class="sfil" data-w="92"></div></div><div class="scap">Industry avg: 1.8x</div></div>
+        <div class="srow"><div class="slbl"><span>Client Retention</span><span>98%</span></div><div class="sbar"><div class="sfil sfil2" data-w="98"></div></div><div class="scap">Industry avg: 65%</div></div>
+        <div class="srow"><div class="slbl"><span>Campaign CTR</span><span>8.4%</span></div><div class="sbar"><div class="sfil sfil3" data-w="84"></div></div><div class="scap">Industry avg: 2.1%</div></div>
+        <div class="srow"><div class="slbl"><span>Organic Growth</span><span>340%</span></div><div class="sbar"><div class="sfil" data-w="88"></div></div><div class="scap">Industry avg: 80%</div></div>
+        <div class="srow"><div class="slbl"><span>Client Satisfaction</span><span>4.9/5</span></div><div class="sbar"><div class="sfil sfil2" data-w="98"></div></div><div class="scap">Based on 500+ reviews</div></div>
+      </div>
+      <div class="why-bot">
+        <div class="wbs"><div class="v">5<em>yr</em></div><div class="l">In Business</div></div>
+        <div class="wbs"><div class="v">500<em>+</em></div><div class="l">Clients</div></div>
+        <div class="wbs"><div class="v">72<em>hr</em></div><div class="l">Launch</div></div>
+        <div class="wbs"><div class="v">24<em>/7</em></div><div class="l">Monitoring</div></div>
+      </div>
     </div>
   </div>
-  <div class="why-r rr">
-    <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:.5rem;">Performance Benchmarks</div>
-    <div style="font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:2rem;">Dotcom vs. Industry Average</div>
-    <div class="scrs">
-      <div class="srow"><div class="slbl"><span>ROAS Delivery</span><span>5.2x avg</span></div><div class="sbar"><div class="sfil sfb" data-w="92"></div></div><div class="scap">Industry avg: 1.8x</div></div>
-      <div class="srow"><div class="slbl"><span>Client Retention</span><span>98%</span></div><div class="sbar"><div class="sfil sfg" data-w="98"></div></div><div class="scap">Industry avg: 65%</div></div>
-      <div class="srow"><div class="slbl"><span>Campaign CTR</span><span>8.4%</span></div><div class="sbar"><div class="sfil sfc" data-w="84"></div></div><div class="scap">Industry avg: 2.1%</div></div>
-      <div class="srow"><div class="slbl"><span>Organic Growth</span><span>340%</span></div><div class="sbar"><div class="sfil sfy" data-w="88"></div></div><div class="scap">Industry avg: 80%</div></div>
-      <div class="srow"><div class="slbl"><span>Client Satisfaction</span><span>4.9/5</span></div><div class="sbar"><div class="sfil sfp" data-w="98"></div></div><div class="scap">Based on 500+ reviews</div></div>
-    </div>
-    <div class="why-bot">
-      <div class="wbs"><div class="v">5yr</div><div class="l">In Business</div></div>
-      <div class="wbs"><div class="v">500+</div><div class="l">Clients</div></div>
-      <div class="wbs"><div class="v">72hr</div><div class="l">Launch</div></div>
-      <div class="wbs"><div class="v">24/7</div><div class="l">Monitoring</div></div>
-    </div>
-  </div>
-</div></section>
+</section>
 
 <!-- TESTIMONIALS -->
-<section class="tst-s" id="testimonials"><div class="con">
-  <div class="tc- rr">
-    <div class="tag tb" style="justify-content:center;"><span class="pip"></span>Client Stories<span class="pip"></span></div>
-    <h2 class="st">Don't Take Our<br>Word for It</h2>
-    <p class="ss">500+ brands have transformed their digital presence with Dotcom. Here's what some of them say.</p>
+<section class="tst-sec">
+  <div class="con">
+    <div class="tc rr">
+      <div class="eyebrow" style="justify-content:center;"><div class="ep"></div><span>Client Stories</span><div class="ep"></div></div>
+      <h2 class="stitle">DON'T TAKE OUR<br>WORD <span class="r">FOR IT</span></h2>
+      <p class="ssub">500+ brands have transformed their digital presence with DotCom. Here's what some of them say.</p>
+    </div>
+    <div class="tst-grid">
+      <div class="tcd rr"><div class="tstars">★★★★★</div><div class="tq">DotCom took our Instagram from 2,000 followers to 47,000 in just 5 months. Our online sales doubled. The team is incredibly responsive and always brings fresh ideas. Highly recommended!</div><div class="tau"><div class="tav" style="background:#CC1212;">AK</div><div><div class="tan">Ahmed Khan</div><div class="tar">CEO, FashionForward PK</div><span class="tco">E-Commerce</span></div></div></div>
+      <div class="tcd ft rr d1"><div class="tstars">★★★★★</div><div class="tq">Our Google Ads ROAS went from 1.8x to 5.4x in the first quarter. The transparency in reporting is unlike any agency I've worked with before. They genuinely care about results — not just deliverables.</div><div class="tau"><div class="tav" style="background:rgba(255,255,255,.25);color:#fff;">SR</div><div><div class="tan">Sara Rehman</div><div class="tar">Founder, LearnX Academy</div><span class="tco">EdTech</span></div></div></div>
+      <div class="tcd rr d2"><div class="tstars">★★★★★</div><div class="tq">We launched our restaurant with zero digital presence. DotCom built everything in 3 weeks — within 2 months we had full tables every weekend and 52K Instagram followers. Absolutely phenomenal!</div><div class="tau"><div class="tav" style="background:#1a1a1a;border:1px solid #333;">RM</div><div><div class="tan">Raza Mirza</div><div class="tar">Owner, SpicyBites Chain</div><span class="tco">Food & Beverage</span></div></div></div>
+    </div>
   </div>
-  <div class="tst-g">
-    <div class="tcd rr"><div class="tstars">★★★★★</div><div class="tq">Dotcom took our Instagram from 2,000 followers to 47,000 in just 5 months. More importantly, our online sales doubled. The team is incredibly responsive and always brings new ideas to the table.</div><div class="tau"><div class="tav" style="background:linear-gradient(135deg,#1654F0,#4D7EF7)">AK</div><div><div class="tan">Ahmed Khan</div><div class="tar">CEO, FashionForward PK</div><span class="tco">E-Commerce</span></div></div></div>
-    <div class="tcd ft rr d1"><div class="tstars">★★★★★</div><div class="tq">Our Google Ads ROAS went from 1.8x to 5.4x in the first quarter. The transparency in reporting is unlike any agency I've worked with. They know their craft and actually care about our results.</div><div class="tau"><div class="tav" style="background:rgba(255,255,255,.25);color:#fff">SR</div><div><div class="tan">Sara Rehman</div><div class="tar">Founder, LearnX Academy</div><span class="tco">EdTech</span></div></div></div>
-    <div class="tcd rr d2"><div class="tstars">★★★★★</div><div class="tq">We launched our restaurant chain with zero digital presence. Dotcom built everything in 3 weeks and within 2 months we had full tables every weekend and 52K Instagram followers. Just phenomenal.</div><div class="tau"><div class="tav" style="background:linear-gradient(135deg,#FF5C35,#FF9472)">RM</div><div><div class="tan">Raza Mirza</div><div class="tar">Owner, SpicyBites Chain</div><span class="tco">Food & Beverage</span></div></div></div>
-  </div>
-</div></section>
+</section>
 
 <!-- PLATFORMS -->
-<section class="plat-s"><div class="con">
-  <div class="tc- rr">
-    <div class="tag tp" style="justify-content:center;"><span class="pip"></span>Platforms We Master<span class="pip"></span></div>
-    <h2 class="st">Everywhere Your<br>Audience Lives</h2>
+<section class="plat-sec">
+  <div class="con">
+    <div class="tc rr">
+      <div class="eyebrow" style="justify-content:center;"><div class="ep"></div><span>Platforms We Master</span><div class="ep"></div></div>
+      <h2 class="stitle">EVERYWHERE YOUR<br>AUDIENCE <span class="r">LIVES</span></h2>
+    </div>
+    <div class="plat-grid rr">
+      <div class="pchip">📘 Facebook</div><div class="pchip">📸 Instagram</div>
+      <div class="pchip">🎵 TikTok</div><div class="pchip">▶️ YouTube</div>
+      <div class="pchip">🔗 LinkedIn</div><div class="pchip">🐦 X (Twitter)</div>
+      <div class="pchip">📌 Pinterest</div><div class="pchip">🔍 Google Search</div>
+      <div class="pchip">🛍️ Google Shopping</div><div class="pchip">📧 Email Marketing</div>
+      <div class="pchip">💬 WhatsApp Business</div><div class="pchip">🗺️ Google My Business</div>
+      <div class="pchip">🎙️ Podcast Ads</div><div class="pchip">⭐ Influencer Marketing</div>
+    </div>
   </div>
-  <div class="plat-g rr">
-    <div class="pchip"><span class="pi">📘</span>Facebook</div><div class="pchip"><span class="pi">📸</span>Instagram</div>
-    <div class="pchip"><span class="pi">🎵</span>TikTok</div><div class="pchip"><span class="pi">▶️</span>YouTube</div>
-    <div class="pchip"><span class="pi">🔗</span>LinkedIn</div><div class="pchip"><span class="pi">🐦</span>X (Twitter)</div>
-    <div class="pchip"><span class="pi">📌</span>Pinterest</div><div class="pchip"><span class="pi">🔍</span>Google Search</div>
-    <div class="pchip"><span class="pi">🛍️</span>Google Shopping</div><div class="pchip"><span class="pi">📧</span>Email Marketing</div>
-    <div class="pchip"><span class="pi">💬</span>WhatsApp Business</div><div class="pchip"><span class="pi">🗺️</span>Google My Business</div>
-    <div class="pchip"><span class="pi">🎙️</span>Podcast Ads</div><div class="pchip"><span class="pi">⭐</span>Influencer Marketing</div>
-  </div>
-</div></section>
+</section>
 
 <!-- PRICING -->
-<section class="pri-s" id="pricing"><div class="con">
-  <div class="tc- rr">
-    <div class="tag tc" style="justify-content:center;"><span class="pip"></span>Investment Plans<span class="pip"></span></div>
-    <h2 class="st">Clear, Honest Pricing<br>for Every Stage</h2>
-    <p class="ss">All plans are fully customized to your goals and budget. No lock-in, no hidden fees — ever.</p>
-  </div>
-  <div class="pri-g">
-    <div class="prc rr">
-      <div class="ptier ptb">Starter</div>
-      <div class="pprice">Custom</div><div class="pnote">Tailored to your budget</div>
-      <div class="pdesc">Perfect for small businesses and startups taking their first serious steps into digital marketing.</div>
-      <ul class="pfeats">
-        <li><span class="ck">✓</span>2 Social Media Platforms</li>
-        <li><span class="ck">✓</span>12 Posts + 4 Reels/Month</li>
-        <li><span class="ck">✓</span>1 Ad Campaign Setup</li>
-        <li><span class="ck">✓</span>Monthly Performance Report</li>
-        <li class="off"><span class="ck">–</span>Dedicated Account Manager</li>
-        <li class="off"><span class="ck">–</span>SEO Services</li>
-      </ul>
-      <a href="#contact" class="pbtn pb-out">Get a Quote →</a>
+<section class="pri-sec" id="pricing">
+  <div class="con">
+    <div class="tc rr">
+      <div class="eyebrow" style="justify-content:center;"><div class="ep"></div><span>Investment Plans</span><div class="ep"></div></div>
+      <h2 class="stitle">TRANSPARENT PRICING<br>FOR EVERY <span class="r">STAGE</span></h2>
+      <p class="ssub">All plans are custom-quoted to your goals. No lock-in contracts, no hidden fees — ever.</p>
     </div>
-    <div class="prc fp rr d1">
-      <div class="pop-b">Most Popular</div>
-      <div class="ptier" style="color:rgba(255,255,255,.65)">Growth</div>
-      <div class="pprice">Custom</div><div class="pnote">Scales with your goals</div>
-      <div class="pdesc">For businesses serious about scaling across multiple channels with consistent, measurable growth.</div>
-      <ul class="pfeats">
-        <li><span class="ck">✓</span>4 Social Media Platforms</li>
-        <li><span class="ck">✓</span>24 Posts + 8 Reels/Month</li>
-        <li><span class="ck">✓</span>Full Ad Campaign Management</li>
-        <li><span class="ck">✓</span>SEO (On & Off-Page)</li>
-        <li><span class="ck">✓</span>Dedicated Account Manager</li>
-        <li><span class="ck">✓</span>Weekly Reports & Strategy Calls</li>
-      </ul>
-      <a href="#contact" class="pbtn pb-wh">Get a Quote →</a>
-    </div>
-    <div class="prc rr d2">
-      <div class="ptier ptg">Enterprise</div>
-      <div class="pprice">Custom</div><div class="pnote">Full-stack partnership</div>
-      <div class="pdesc">Your complete digital marketing department — content, ads, SEO, brand strategy, all under one roof.</div>
-      <ul class="pfeats">
-        <li><span class="ck">✓</span>All Platforms Covered</li>
-        <li><span class="ck">✓</span>Unlimited Content Creation</li>
-        <li><span class="ck">✓</span>Multi-Campaign Management</li>
-        <li><span class="ck">✓</span>Full Technical SEO</li>
-        <li><span class="ck">✓</span>Brand Strategy Consulting</li>
-        <li><span class="ck">✓</span>Real-Time Analytics Dashboard</li>
-      </ul>
-      <a href="#contact" class="pbtn pb-out">Get a Quote →</a>
+    <div class="pri-grid">
+      <div class="prc rr"><div class="ptier">Starter</div><div class="ppr">Custom</div><div class="pnote">Tailored to your budget</div><div class="pdsc">Perfect for small businesses taking their first serious steps into digital marketing.</div><ul class="pfts2"><li><span class="ck">✓</span>2 Social Media Platforms</li><li><span class="ck">✓</span>12 Posts + 4 Reels/Month</li><li><span class="ck">✓</span>1 Ad Campaign Setup</li><li><span class="ck">✓</span>Monthly Performance Report</li><li class="off"><span class="ck">–</span>Dedicated Account Manager</li><li class="off"><span class="ck">–</span>SEO Services</li></ul><a href="#contact" class="pbtn">Get a Quote →</a></div>
+      <div class="prc fp rr d1"><div class="pop-tag">Most Popular</div><div class="ptier">Growth</div><div class="ppr">Custom</div><div class="pnote">Scales with your goals</div><div class="pdsc">For businesses serious about scaling fast across multiple channels with consistent results.</div><ul class="pfts2"><li><span class="ck">✓</span>4 Social Media Platforms</li><li><span class="ck">✓</span>24 Posts + 8 Reels/Month</li><li><span class="ck">✓</span>Full Ad Campaign Management</li><li><span class="ck">✓</span>SEO (On & Off-Page)</li><li><span class="ck">✓</span>Dedicated Account Manager</li><li><span class="ck">✓</span>Weekly Reports & Strategy Calls</li></ul><a href="#contact" class="pbtn pbr">Get a Quote →</a></div>
+      <div class="prc rr d2"><div class="ptier" style="color:var(--gray-mid);">Enterprise</div><div class="ppr">Custom</div><div class="pnote">Full-stack partnership</div><div class="pdsc">Your complete digital marketing department — content, ads, SEO, branding, and web, all under one roof.</div><ul class="pfts2"><li><span class="ck">✓</span>All Platforms Covered</li><li><span class="ck">✓</span>Unlimited Content Creation</li><li><span class="ck">✓</span>Multi-Campaign Management</li><li><span class="ck">✓</span>Full Technical SEO + Web Dev</li><li><span class="ck">✓</span>Brand Strategy Consulting</li><li><span class="ck">✓</span>Real-Time Analytics Dashboard</li></ul><a href="#contact" class="pbtn">Get a Quote →</a></div>
     </div>
   </div>
-</div></section>
+</section>
 
 <!-- FAQ -->
-<section class="faq-s"><div class="con">
-  <div class="tc- rr" style="max-width:600px;margin:0 auto;">
-    <div class="tag tb" style="justify-content:center;"><span class="pip"></span>FAQ<span class="pip"></span></div>
-    <h2 class="st">Questions We Hear<br>All the Time</h2>
+<section class="faq-sec">
+  <div class="con">
+    <div class="tc rr" style="max-width:580px;margin:0 auto;">
+      <div class="eyebrow" style="justify-content:center;"><div class="ep"></div><span>FAQ</span><div class="ep"></div></div>
+      <h2 class="stitle">COMMON QUESTIONS<br>WE <span class="r">ANSWER</span></h2>
+    </div>
+    <div class="faq-grid">
+      <div class="fqi rr"><div class="fqq"><span>How quickly will I see results?</span><div class="fqic">+</div></div><div class="fqa">Paid ad campaigns show measurable results within 2–4 weeks. SEO takes 3–6 months to compound. Social media growth is typically visible within 30 days of consistent execution.</div></div>
+      <div class="fqi rr d1"><div class="fqq"><span>Do you work with small budgets?</span><div class="fqic">+</div></div><div class="fqa">Absolutely. Our Starter plan is designed specifically for brands with limited budgets who want to start smart and scale over time. Contact us and we'll design something that fits.</div></div>
+      <div class="fqi rr d2"><div class="fqq"><span>What industries do you serve?</span><div class="fqic">+</div></div><div class="fqa">We've served e-commerce, restaurants, healthcare, real estate, education, automotive, and more. Our strategies adapt to your industry's specific audience behavior and dynamics.</div></div>
+      <div class="fqi rr d3"><div class="fqq"><span>How are you different from other agencies?</span><div class="fqic">+</div></div><div class="fqa">Three things: specialist teams, 72-hour campaign launches, and reports that show actual revenue impact — not vanity metrics. Our 98% client retention rate says it all.</div></div>
+      <div class="fqi rr"><div class="fqq"><span>Is there a minimum contract period?</span><div class="fqic">+</div></div><div class="fqa">We recommend a 3-month minimum for meaningful results, but we don't lock you in with rigid contracts. We earn your continued business through performance — not paperwork.</div></div>
+      <div class="fqi rr d1"><div class="fqq"><span>Who manages my account day-to-day?</span><div class="fqic">+</div></div><div class="fqa">You get a dedicated account manager as your single point of contact, backed by specialists — ads expert, content creator, SEO analyst, and designer — each focused on their craft.</div></div>
+    </div>
   </div>
-  <div class="faq-g">
-    <div class="fqi rr"><div class="fqq"><span>How quickly will I see results?</span><div class="fqic">+</div></div><div class="fqa">Paid ad campaigns show measurable results within 2–4 weeks. SEO takes 3–6 months to compound. Social media growth is usually visible within 30 days of consistent execution.</div></div>
-    <div class="fqi rr d1"><div class="fqq"><span>Do you work with small budgets?</span><div class="fqic">+</div></div><div class="fqa">Absolutely. We work with businesses at all stages. Our Starter plan is designed for brands with limited budgets who want to start smart and scale over time.</div></div>
-    <div class="fqi rr d2"><div class="fqq"><span>What industries do you serve?</span><div class="fqic">+</div></div><div class="fqa">We've worked across e-commerce, restaurants, healthcare, real estate, education, automotive, and more. Our strategies adapt to your specific industry dynamics.</div></div>
-    <div class="fqi rr d3"><div class="fqq"><span>How are you different from other agencies?</span><div class="fqic">+</div></div><div class="fqa">Three things: specialist teams (not generalists), 72-hour campaign launches, and reports that show actual revenue impact. Our 98% retention rate speaks for itself.</div></div>
-    <div class="fqi rr"><div class="fqq"><span>Is there a minimum contract period?</span><div class="fqic">+</div></div><div class="fqa">We recommend a minimum 3-month engagement for meaningful results, but we don't lock you in. We earn your business through performance, not paperwork.</div></div>
-    <div class="fqi rr d1"><div class="fqq"><span>Who will be working on my account?</span><div class="fqic">+</div></div><div class="fqa">You get a dedicated account manager backed by specialists — a paid ads expert, content creator, SEO analyst, and designer — not one overwhelmed freelancer handling everything.</div></div>
-  </div>
-</div></section>
+</section>
 
 <!-- CTA -->
-<section class="cta-s" id="contact">
-  <div class="cb1"></div><div class="cb2"></div>
+<section class="cta-sec" id="contact">
   <div class="cta-in">
-    <h2 class="rr">Ready to Grow Your<br>Business Online?</h2>
-    <p class="rr">Book a free 30-minute strategy session. We'll audit your digital presence and show you exactly where your next Rs.1,000,000 in revenue is hiding.</p>
+    <h2 class="rr">READY TO DOMINATE<br>YOUR MARKET <span class="r">ONLINE?</span></h2>
+    <p class="rr">Book a free 30-minute strategy session. We'll audit your current digital presence and show you exactly where your next revenue opportunity is hiding — no commitment needed.</p>
     <div class="cta-btns rr">
-      <a href="mailto:hello@dotcom.agency" class="btn-wh">📩 Email Us Now</a>
-      <a href="https://wa.me/923001234567" class="btn-ow">💬 WhatsApp Chat</a>
+      <a href="mailto:dotcom8711@gmail.com" class="btn-red">📩 Email Us Now</a>
+      <a href="https://wa.me/923092156075" class="btn-outline-white">💬 WhatsApp: 03092156075</a>
     </div>
-    <div class="cta-tr rr">
-      <div class="cta-ti">✅ Free strategy session</div>
-      <div class="cta-ti">🔒 No commitment needed</div>
-      <div class="cta-ti">⚡ Response within 2 hours</div>
-      <div class="cta-ti">📍 Based in Karachi, Pakistan</div>
+    <div class="cta-trust rr">
+      <div class="cti"><div class="dot"></div>Free strategy session</div>
+      <div class="cti"><div class="dot"></div>No commitment required</div>
+      <div class="cti"><div class="dot"></div>Response within 2 hours</div>
+      <div class="cti"><div class="dot"></div>Based in Karachi, Pakistan</div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="fg">
-    <div class="fbr fc5">
-      <a href="#" class="logo" style="margin-bottom:.75rem;"><div class="logo-icon"></div><span style="color:#fff;">dot<em style="color:var(--blue-mid);">com</em></span></a>
-      <p class="fd">Karachi's leading full-service digital marketing agency. We grow brands through strategy, creativity, and relentless data-driven execution.</p>
-      <div class="fsoc">
-        <a class="fso" href="#">📸</a><a class="fso" href="#">📘</a><a class="fso" href="#">🎵</a><a class="fso" href="#">🔗</a><a class="fso" href="#">▶️</a>
+  <div class="fgrid con">
+    <div class="fbrand-col fcol">
+      <!-- Logo -->
+      <a href="#" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:1rem;">
+        <svg width="44" height="44" viewBox="0 0 52 52" fill="none">
+          <circle cx="26" cy="26" r="25" fill="#161616" stroke="#CC1212" stroke-width="2"/>
+          <circle cx="18" cy="26" r="4" fill="#CC1212"/>
+          <path d="M26 18 Q39 18 39 26 Q39 34 26 34 L23 34 L23 18 Z" fill="white" opacity=".95"/>
+          <text x="28" y="30.5" font-family="Arial Black,Arial" font-size="7.5" font-weight="900" fill="#0D0D0D" text-anchor="middle">om</text>
+        </svg>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;color:#fff;letter-spacing:-.5px;line-height:1;">Dot<span style="color:#CC1212">Com</span></div>
+          <div style="font-size:.55rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35);">— Customer Satisfaction —</div>
+        </div>
+      </a>
+      <p class="fdesc">Karachi's leading digital marketing agency. We grow brands through strategy, creativity, and relentless data-driven execution — with a focus on customer satisfaction above all else.</p>
+      <div class="fsocs">
+        <a class="fso" href="https://www.instagram.com/dotcom9922" target="_blank" title="Instagram @dotcom9922">📸</a>
+        <a class="fso" href="#" title="Facebook">📘</a>
+        <a class="fso" href="#" title="TikTok">🎵</a>
+        <a class="fso" href="#" title="YouTube">▶️</a>
+        <a class="fso" href="https://wa.me/923092156075" title="WhatsApp">💬</a>
       </div>
     </div>
-    <div class="fc5">
+    <div class="fcol">
       <h5>Services</h5>
       <ul>
-        <li><a href="#">Paid Advertising</a></li><li><a href="#">Social Media Mgmt</a></li>
-        <li><a href="#">Content Creation</a></li><li><a href="#">SEO & Search</a></li>
-        <li><a href="#">Brand Strategy</a></li><li><a href="#">Email Marketing</a></li>
+        <li><a href="#">Paid Advertising</a></li>
+        <li><a href="#">Social Media Mgmt</a></li>
+        <li><a href="#">Content Creation</a></li>
+        <li><a href="#">SEO & SEM</a></li>
+        <li><a href="#">Website Development</a></li>
+        <li><a href="#">Email Marketing</a></li>
+        <li><a href="#">PPC Advertising</a></li>
       </ul>
     </div>
-    <div class="fc5">
+    <div class="fcol">
       <h5>Company</h5>
       <ul>
-        <li><a href="#">About Us</a></li><li><a href="#">Our Work</a></li>
-        <li><a href="#">Case Studies</a></li><li><a href="#">Blog</a></li>
-        <li><a href="#">Careers</a></li><li><a href="#">Contact</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Work</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#contact">Contact Us</a></li>
       </ul>
     </div>
-    <div class="fc5">
-      <h5>Get in Touch</h5>
-      <div class="fci"><span class="fi">📍</span><div><strong>Office</strong>Karachi, Pakistan</div></div>
-      <div class="fci"><span class="fi">📞</span><div><strong>Phone</strong>+92 300 123 4567</div></div>
-      <div class="fci"><span class="fi">📧</span><div><strong>Email</strong>hello@dotcom.agency</div></div>
+    <div class="fcol">
+      <h5>Contact Us</h5>
+      <div class="fci"><span class="fi">📞</span><div><strong>Phone</strong><a href="tel:03092156075">03092156075</a></div></div>
+      <div class="fci"><span class="fi">📧</span><div><strong>Email</strong><a href="mailto:dotcom8711@gmail.com">dotcom8711@gmail.com</a></div></div>
+      <div class="fci"><span class="fi">📸</span><div><strong>Instagram</strong><a href="https://www.instagram.com/dotcom9922" target="_blank">@dotcom9922</a></div></div>
+      <div class="fci"><span class="fi">📍</span><div><strong>Location</strong>Karachi, Pakistan</div></div>
       <div class="fci"><span class="fi">🕐</span><div><strong>Hours</strong>Mon–Sat, 9AM – 7PM</div></div>
-      <div class="fbadge" style="margin-top:.5rem;"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;"></span>Currently accepting clients</div>
+      <div class="faccept"><div class="dot"></div>Currently Accepting Clients</div>
     </div>
   </div>
-  <div class="fbot">
-    <p>© 2025 Dotcom Digital Marketing Agency. All rights reserved. Built with ❤️ in Karachi.</p>
-    <div class="fbot-l"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+  <div class="fbot con">
+    <p>© 2025 DotCom Digital Marketing Agency. All rights reserved. Customer Satisfaction Guaranteed.</p>
+    <div class="fbot-lnks">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
   </div>
 </footer>
 
 <script>
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('out'),1200));
+/* LOADER */
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('ldr').classList.add('out'),1300));
+
+/* NAV HERO DOTS */
+const hd=document.getElementById('hDots');
+if(hd){for(let i=0;i<48;i++){const s=document.createElement('span');hd.appendChild(s);}}
+
+/* NAV SCROLL */
 const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>60));
-const ham=document.getElementById('ham'),mob=document.getElementById('mobNav');
-ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.toggle('open');});
-mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('open');ham.classList.remove('open');}));
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.12});
-document.querySelectorAll('.rr').forEach(el=>obs.observe(el));
-const cObs=new IntersectionObserver(es=>es.forEach(e=>{
+window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>70));
+
+/* HAMBURGER */
+const ham=document.getElementById('ham'),drw=document.getElementById('mobDrw');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');drw.classList.toggle('open');});
+drw.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{drw.classList.remove('open');ham.classList.remove('open');}));
+
+/* REVEAL */
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.12});
+document.querySelectorAll('.rr').forEach(el=>ro.observe(el));
+
+/* STAT COUNTERS */
+const co=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting)return;
-  const box=e.target,span=box.querySelector('span'),t=+box.dataset.t;
+  const b=e.target,sp=b.querySelector('span'),t=+b.dataset.t;
   let s=0;const fn=ts=>{if(!s)s=ts;const p=Math.min((ts-s)/1600,1),ease=1-Math.pow(1-p,3);
-  span.textContent=Math.floor(ease*t);if(p<1)requestAnimationFrame(fn);else span.textContent=t;};
-  requestAnimationFrame(fn);cObs.unobserve(box);
+  sp.textContent=Math.floor(ease*t);if(p<1)requestAnimationFrame(fn);else sp.textContent=t;};
+  requestAnimationFrame(fn);co.unobserve(b);
 }),{threshold:.5});
-document.querySelectorAll('[data-t]').forEach(el=>cObs.observe(el));
-const bObs=new IntersectionObserver(es=>es.forEach(e=>{
+document.querySelectorAll('[data-t]').forEach(el=>co.observe(el));
+
+/* SCORE BARS */
+const wo=new IntersectionObserver(es=>es.forEach(e=>{
   if(!e.isIntersecting)return;
   e.target.querySelectorAll('.sfil').forEach(f=>{f.style.width=f.dataset.w+'%';});
-  bObs.unobserve(e.target);
+  wo.unobserve(e.target);
 }),{threshold:.3});
-const wr=document.querySelector('.why-r');if(wr)bObs.observe(wr);
+const wr=document.querySelector('.why-r');if(wr)wo.observe(wr);
+
+/* SERVICE TABS */
 document.querySelectorAll('.stab').forEach(t=>{
   t.addEventListener('click',()=>{
     document.querySelectorAll('.stab').forEach(x=>x.classList.remove('on'));
@@ -859,19 +936,24 @@ document.querySelectorAll('.stab').forEach(t=>{
     if(p)p.classList.add('on');
   });
 });
-document.querySelectorAll('.pfb').forEach(b=>{
+
+/* PORTFOLIO FILTER */
+document.querySelectorAll('.pfbtn').forEach(b=>{
   b.addEventListener('click',()=>{
-    document.querySelectorAll('.pfb').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.pfbtn').forEach(x=>x.classList.remove('on'));
     b.classList.add('on');
     const f=b.dataset.f;
-    document.querySelectorAll('.wc').forEach(c=>{
+    document.querySelectorAll('.wcard').forEach(c=>{
       const cat=c.dataset.cat||'';
       const show=f==='all'||cat.includes(f);
-      c.style.opacity=show?'1':'0.25';
+      c.style.opacity=show?'1':'0.2';
       c.style.pointerEvents=show?'auto':'none';
+      c.style.transform=show?'':'scale(.97)';
     });
   });
 });
+
+/* FAQ */
 document.querySelectorAll('.fqq').forEach(q=>{
   q.addEventListener('click',()=>{
     const item=q.parentElement,was=item.classList.contains('open');
@@ -882,4 +964,3 @@ document.querySelectorAll('.fqq').forEach(q=>{
 </script>
 </body>
 </html>
-   
